@@ -1,0 +1,42 @@
+
+全局设置：
+
+ 下载并安装 Git
+  git config --global user.name "Your Name"
+  git config --global user.email jiayuewang228@gmail.com
+  Add your public key
+        
+
+下一步：
+
+  mkdir MyWorkspace
+  cd MyWorkspace
+  git init
+  touch README
+  git add README
+  git commit -m 'first commit'
+  git remote add origin git@github.com:Jalen/MyWorkspace.git
+  git push -u origin master
+      
+
+现有的 Git 仓库？
+
+  cd existing_git_repo
+  git remote add origin git@github.com:Jalen/MyWorkspace.git
+  git push -u origin master
+      
+
+导入现有的 Subversion 仓库？
+
+  点击此处
+      
+
+当你完成时：
+
+  继续
+
+
+http://help.github.com/
+
+
+
