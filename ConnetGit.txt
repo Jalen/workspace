@@ -1,0 +1,8 @@
+1. Generating and adding SSH keys
+   http://help.github.com/linux-key-setup/
+   Add this key to the github https://github.com/account
+2. Setting user name, email and GitHub toke
+   http://help.github.com/git-email-settings/
+
+3. Clone the repo
+   git clone git@github.com:Jalen/MyWorkspace.git
