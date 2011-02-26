@@ -2,3 +2,8 @@ Ctrl + Alt + T => Run terminator
 Ctrl + Alt + -> => Go to next work space
 Ctrl + Alt + <- => Go to previous work space
 Alt + F2 => Run Application
+
+
+nautilus => file exploer
+
+
