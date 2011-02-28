@@ -1,5 +1,5 @@
 ; How to use:
-;  Run "link .emacs ~/.emacs" under the location of this file
+;  Run "ln -s .emacs ~/.emacs" under the location of this file
 
 
 (add-to-list 'load-path "~/MyWorkspace/config/emacs")
