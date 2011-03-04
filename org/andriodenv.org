@@ -1,0 +1,11 @@
+* Install Java
+
+* Install Eclipse
+
+* Install ADT
+
+* Some useful command
+
+** tools/andriod update sdk
+   This will bring up the "Andriod SDK and AVD Manager"
+
