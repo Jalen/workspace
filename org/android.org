@@ -71,3 +71,94 @@ component belongs to your application or another.
    One of the most important aspects of providing resources separate from your
    source code is the ability for you to provide alternative resources for
    different device configurations
+
+
+* Activities
+  
+  back stack
+      last in, first out
+	  
+  activity's lifecycle callback methods
+    create
+	stop
+	resume
+	destroy
+  state transition
+** Creating an Activity
+** Implementing a user interface
+   
+   View
+   ViewGroup
+   setContentView
+
+** Declaring the activity in the manifest
+   
+#+BEGIN_EXAMPLE
+<manifest ... >
+  <application ... >
+      <activity android:name=".ExampleActivity" />
+      ...
+  </application ... >
+  ...
+</manifest >
+#+END_EXAMPLE
+
+** Using intent filter
+#+BEGIN_EXAMPLE
+<activity android:name=".ExampleActivity" android:icon="@drawable/app_icon">
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+</activity>
+#+END_EXAMPLE
+
+The <action> element specifies that this is the "main" entry point to the
+application. The <category> element specifies that this activity should be
+listed in the system's application launcher (to allow users to launch this
+activity).
+
+** Starting an Activity
+
+#+begin_src java
+Intent intent = new Intent(this, SignInActivity.class);
+startActivity(intent);
+#+end_src
+
+#+begin_src java
+Intent intent = new Intent(Intent.ACTION_SEND);
+intent.putExtra(Intent.EXTRA_EMAIL, recipientArray);
+startActivity(intent);
+#+end_src
+
+** Starting an activity for a result
+
+#+begin_src lisp 
+private void pickContact() {
+    // Create an intent to "pick" a contact, as defined by the content provider URI
+    Intent intent = new Intent(Intent.ACTION_PICK, Contacts.CONTENT_URI);
+    startActivityForResult(intent, PICK_CONTACT_REQUEST);
+}
+
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    // If the request went well (OK) and the request was PICK_CONTACT_REQUEST
+    if (resultCode == Activity.RESULT_OK && requestCode == PICK_CONTACT_REQUEST) {
+        // Perform a query to the contact's content provider for the contact's name
+        Cursor cursor = getContentResolver().query(data.getData(),
+        new String[] {Contacts.DISPLAY_NAME}, null, null, null);
+        if (cursor.moveToFirst()) { // True if the cursor is not empty
+            int columnIndex = cursor.getColumnIndex(Contacts.DISPLAY_NAME);
+            String name = cursor.getString(columnIndex);
+            // Do something with the selected contact's name...
+        }
+    }
+}
+#+end_src
+
+** Shutting Down an Activity
+#+begin_src lisp 
+finish()
+
+finishActivity()
+#+end_src
