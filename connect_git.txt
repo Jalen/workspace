@@ -13,3 +13,6 @@
 5. git merger
 
 6. git push
+
+
+You can always run "git --help" to get the help
