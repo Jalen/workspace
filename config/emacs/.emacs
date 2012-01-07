@@ -6,3 +6,7 @@
 (add-to-list 'load-path "~/MyWorkspace/config/lisps")
 
 (mapc 'load (directory-files "~/MyWorkspace/config/emacs" t "^[a-zA-Z0-9].*.el$"))
+
+(add-to-list 'load-path "~/MyWorkspace/config/lisps/yasnippet")
+(require 'yasnippet)
+(yas/global-mode 1)

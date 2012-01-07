@@ -10,6 +10,10 @@
   (interactive)
   ( find-file "p:\\Home\\emacs.el"))
 
+(defun my-org-export()
+  "Export the active org as html"
+  (interactive)
+  (org-export-as-html-and-open 1))
 
 (defun my-dropbox()
   "dired dropbox folder"

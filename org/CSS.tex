@@ -1,0 +1,143 @@
+% Created 2012-01-07 六 21:12
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{hyperref}
+
+
+\title{CSS}
+\author{Jalen Wang}
+\date{07 一月 2012}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+
+\section{数据和视图分离}
+\label{sec-1}
+
+\subsection{有了 CSS,就可以控制页面的外观并且将文档的表现部分与内容分隔开}
+\label{sec-1.1}
+
+\section{更易于保持各个界面的风格的一致性}
+\label{sec-2}
+
+\subsection{这个界面可以使用相同的CSS}
+\label{sec-2.1}
+
+\section{标记}
+\label{sec-3}
+
+\subsection{id 和 类名}
+\label{sec-3.1}
+
+\subsection{div 和 span}
+\label{sec-3.2}
+
+   div 可以用来对块级元素进行分组,而 span 可以用来对行内元素进行分组或标识
+\section{为样式找到目标}
+\label{sec-4}
+
+  有效且结构良好的文档为应用样式提供了一个框架。要想使用 CSS 将样式应用于特定的(X)HTML 元素,
+需要有办法找到这个元素。在 CSS 中,执行这一任务的样式规则部分称为选择器(selector)。
+\subsection{常用的选择器}
+\label{sec-4.1}
+
+\subsubsection{类型选择器}
+\label{sec-4.1.1}
+
+    类型选择器有时候也称为元素选择器或简单选择器
+
+\begin{verbatim}
+p { color: black;}
+a { text-decoration: underline;}
+h1 { fon-weight: bold;}
+
+\end{verbatim}
+
+
+\subsubsection{后代选择器可用来寻找特定元素或元素组的后代}
+\label{sec-4.1.2}
+
+    后代选择器由其他两个选择器之间的空格表示。在下面的示例中,只在作为列表项的后
+    代的锚元素上应用样式,而段落中的锚不受影响。
+
+\begin{verbatim}
+li a { text-decoration: none;}
+
+\end{verbatim}
+
+
+\subsubsection{ID 选择器由一个\#字符表示,类选择器由一个点号表示}
+\label{sec-4.1.3}
+
+
+\begin{verbatim}
+#intro { font-weight: bold;}
+.dateposted { color: green;}
+<p id="intro">some text</p>
+<p class="dateposted">24/3/2006</p>
+
+\end{verbatim}
+
+
+\subsubsection{伪类}
+\label{sec-4.1.4}
+
+
+\begin{verbatim}
+/*maks all unvisited links blue*/
+a: like{ color: blue;}
+/*makes all visited links green*/
+a: visited { color: green;}
+/*maks links red when hovered or activated*/
+a: hover, a: active{ color: red;}
+/*maks table rows red when hovered over*/
+tr: hover { background-color: red;}
+/*maks input elements yellow when focus is applied*/
+input: focus{ background-color: yellow;}
+
+\end{verbatim}
+
+
+:link 和:visited 称为链接伪类,只能应用于锚元素。:hover、:active 和:focus 称为动态伪类,理论
+上可以应用于任何元素。不幸的是,只有少数现代浏览器(比如 Firefox)支持这种功能。IE 6 和更低版本
+只注意应用于锚链接的:active 和:hover 选择器,完全忽略: focus。
+\subsubsection{通用选择器}
+\label{sec-4.1.5}
+
+
+\begin{verbatim}
+*{ padding: 0; margin: 0; }
+
+\end{verbatim}
+
+
+
+
+\section{Question}
+\label{sec-5}
+
+\subsection{strong em}
+\label{sec-5.1}
+
+\subsection{blockquote cite}
+\label{sec-5.2}
+
+\subsection{abbr acronym code}
+\label{sec-5.3}
+
+\subsection{fieldset legend label}
+\label{sec-5.4}
+
+\subsection{caption thead tbody tfoot}
+\label{sec-5.5}
+
+
+\end{document}

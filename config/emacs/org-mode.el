@@ -107,6 +107,7 @@
 (setq org-agenda-include-diary nil)
 (setq org-timeline-show-empty-dates t)
 (setq org-insert-mode-line-in-empty-file t)
+(setq org-export-with-toc nil)
 
 
 (setq remember-annotation-functions '(org-remember-annotation)
@@ -206,3 +207,4 @@
 		 )))
 
 ;;global-set-key (kbd "<f8> p") 'org-publish)
+
