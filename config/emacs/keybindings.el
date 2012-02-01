@@ -14,7 +14,7 @@
 (global-set-key "\M-n" 'my-make-frame)
 ;;End
 
-(global-set-key [f3] 'shell) ;shell
+(global-set-key [f3] 'eshell) ;shell
 (global-set-key [f5] 'query-replace)
 (global-set-key [f7] 'ispell)
 

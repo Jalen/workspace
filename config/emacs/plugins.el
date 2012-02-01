@@ -52,6 +52,14 @@
 (autoload 'dos-mode "dos" "Edit Dos scripts." t)
 (add-to-list 'auto-mode-alist '("\\.bat$" . dos-mode))
 
+
+;;run this command 
+;; emacs --batch --eval '(byte-compile-file "js2-20080616a.el")'
+;;to byte-compile
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+
 ;; -----------------------------------------------------------------------------
 ;; Git support 
 ;; -----------------------------------------------------------------------------

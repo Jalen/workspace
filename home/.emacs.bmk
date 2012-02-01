@@ -2,4 +2,8 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-nil
+((" shell"
+  (filename . "~/MyWorkspace/config/emacs/keybindings.el")
+  (front-context-string . " ;shell\n(global-")
+  (rear-context-string . "ey [f3] 'eshell)")
+  (position . 497)))
