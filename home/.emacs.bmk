@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-((" shell"
+(("int main(int argc, char *argv[])"
+  (filename . "~/node/src/node_main.cc")
+  (front-context-string . "int main(int arg")
+  (rear-context-string . "clude <node.h>\n\n")
+  (position . 1154))
+ (" shell"
   (filename . "~/MyWorkspace/config/emacs/keybindings.el")
   (front-context-string . " ;shell\n(global-")
   (rear-context-string . "ey [f3] 'eshell)")
