@@ -144,3 +144,12 @@
 
 (setq-default make-backup-file t)
 (setq make-backup-file t)
+
+
+;; Recent file support
+(require 'recentf)
+(recentf-mode 1)
+
+
+(load "recentf-buffer")
+(global-set-key [?\C-c ?r ?f] 'recentf-open-files-in-simply-buffer)
