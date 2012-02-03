@@ -22,16 +22,6 @@
 
 (put 'dired-find-alternate-file 'disabled nil)
 
-(setq backup-directory-alist '(("" . "~/backup")))
-(setq-default make-backup-file t)
-(setq make-backup-file t)
-
-(setq make-backup-files t)
-(setq version-control t)
-(setq kept-old-versions 2)
-(setq kept-new-versions 10)
-(setq delete-old-versions t)
-
 (setq abbrev-file-name (concat DB "\\home\\.abbrev_defs"))
 
 (setq bookmark-file (concat DB "\\home\\.emacs.bmk"))
@@ -144,8 +134,13 @@
 '((height . 30) (width . 90) (menu-bar-lines . 20) (tool-bar-lines . 0)))
 
 
-(defun tcc()
-  "Compile c source code with tcc"
-  (interactive)
-  (compile "tcc %s" (buffer-file-name))
-)
+;; Backup stuff...
+(setq backup-directory-alist `(("." . "~/.saves")))
+
+(setq delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 2
+  version-control t)
+
+(setq-default make-backup-file t)
+(setq make-backup-file t)
