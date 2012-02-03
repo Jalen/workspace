@@ -1,7 +1,13 @@
-There is a .emacs file in this folder.
+[Ubuntu]
+		There is a .emacs file in this folder.
 
-please open it and follow the instruction in that file.
+		please open it and follow the instruction in that file.
 
-Create a link to the .emacs
+		Create a link to the .emacs
 
-ln -s .emacs ~/.emacs
+		ln -s .emacs ~/.emacs
+
+[Windows]
+		(setenv "HOME" "c:/git")
+
+		(load-file "~/workspace/config/emacs/.emacs")
