@@ -2,13 +2,19 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("int main(int argc, char *argv[])"
-  (filename . "~/node/src/node_main.cc")
-  (front-context-string . "int main(int arg")
-  (rear-context-string . "clude <node.h>\n\n")
-  (position . 1154))
- (" shell"
-  (filename . "~/MyWorkspace/config/emacs/keybindings.el")
-  (front-context-string . " ;shell\n(global-")
-  (rear-context-string . "ey [f3] 'eshell)")
-  (position . 497)))
+(("(define-key semantic-mode-map [C-f12] 'semantic-ia-fast-jump-or-back)"
+ (filename . "~/Desktop/workspace/config/emacs/semantic-setting.el")
+ (front-context-string . "(define-key sema")
+ (rear-context-string . "mp (point))))\n\n\n")
+ (position . 2233))
+("int main(int argc, char *argv[])"
+ (filename . "~/node/src/node_main.cc")
+ (front-context-string . "int main(int arg")
+ (rear-context-string . "clude <node.h>\n\n")
+ (position . 1154))
+(" shell"
+ (filename . "~/MyWorkspace/config/emacs/keybindings.el")
+ (front-context-string . " ;shell\n(global-")
+ (rear-context-string . "ey [f3] 'eshell)")
+ (position . 497))
+)

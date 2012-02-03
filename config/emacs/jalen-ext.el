@@ -121,3 +121,9 @@
  )
   
 )))
+
+
+(defun my-swith-to-scratch()
+  "Deletes the current frame. If this is the last frame, quit Emacs."
+  (interactive)
+  (switch-to-buffer "scratch"))

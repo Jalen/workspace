@@ -7,7 +7,7 @@
 (global-set-key [(meta down)] 'move-line-down)
 (global-set-key [(control shift tab)] 'tabbar-backward)
 (global-set-key [(control tab)]       'tabbar-forward)
-(global-set-key [(control meta l)] 'speedbar-get-focus)
+(global-set-key [(control f8)] 'speedbar-get-focus)
 
 ;; Frame Management
 (global-set-key [\M-f4] 'my-delete-frame)
@@ -32,10 +32,3 @@
 (global-set-key [(meta right)] 'forward-sexp)
 
 (global-set-key (kbd "M-/") 'hippie-expand)
-
-(defun my-swith-to-scratch()
-  "Deletes the current frame. If this is the last frame, quit Emacs."
-  (interactive)
-  (switch-to-buffer "scratch"))
-
-(global-set-key (kbd "<f2>") 'my-swith-to-scratch)
