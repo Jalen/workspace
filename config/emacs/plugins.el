@@ -28,7 +28,7 @@
   ;; 'hide-region
 ))
 
-(tabbar-mode)
+(tabbar-mode 1)
 
 (global-smart-tab-mode 1)
 		  
@@ -40,10 +40,10 @@
 (require 'htmlize)
 
 ;(require 'graphviz-dot-mode)
-;; (load-file "P:/Software/Emacs/site-lisp/graphviz-dot-mode.elc")
+;(load-file "P:/Software/Emacs/site-lisp/graphviz-dot-mode.elc")
 
-;; (add-to-list 'load-path "P:/Software/Emacs/site-lisp/git-emacs")
-;; (require 'git-emacs)
+;;(add-to-list 'load-path "~/workspace/config/lisps/git-emacs")
+;;(require 'git-emacs)
 
 ;;http://www.emacswiki.org/cgi-bin/wiki/InteractivelyDoThings
 (require 'ido)
@@ -64,6 +64,6 @@
 ;; Git support 
 ;; -----------------------------------------------------------------------------
 ; http://parijatmishra.wordpress.com/2008/09/06/up-and-running-with-emacs-and-git/
-(load "/usr/share/doc/git-core/contrib/emacs/git.el")
-(load "/usr/share/doc/git-core/contrib/emacs/git-blame.el")
-(add-to-list 'vc-handled-backends 'GIT)
+;;(load "/usr/share/doc/git-core/contrib/emacs/git.el")
+;;(load "/usr/share/doc/git-core/contrib/emacs/git-blame.el")
+;;(add-to-list 'vc-handled-backends 'GIT)

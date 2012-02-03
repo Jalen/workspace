@@ -3,17 +3,18 @@
 (defun my-todo()
   "Open todo.org"
   (interactive)
-  ( find-file "p:\\Home\\GTD\\todo.org"))
+  ( find-file (concat DB "\\Home\\GTD\\todo.org")))
 
 (defun my-emacs()
   "Open emacs.el"
   (interactive)
-  ( find-file "p:\\Home\\emacs.el"))
+  ( find-file (concat DB  "\\Home\\emacs.el")))
 
-(defun my-org-export()
-  "Export the active org as html"
+(defun my-apps()
+  "dired apps folder"
   (interactive)
-  (org-export-as-html-and-open 1))
+  (dired (getenv "APPS")))
+
 
 (defun my-dropbox()
   "dired dropbox folder"
@@ -24,12 +25,39 @@
 (defun my-ahk()
   "Open ahk.org"
   (interactive)
-  ( find-file "p:\\AppData\\ToolsMenu\\AHK.ahk"))
+  ( find-file (concat DB "\\AppData\\ToolsMenu\\AHK.ahk")))
 
+(defun go-home()
+  "dired the home folder"
+  (interactive)
+  (dired (concat (getenv "dropbox") "\\home")))
 
+(defun insert-date ()
+  "Insert current date yyyy-mm-dd."
+  (interactive)
+  (when (region-active-p)
+    (delete-region (region-beginning) (region-end) )
+    )
+  (insert (format-time-string "%Y-%m-%d"))
+  )
 
+(defun new-notes(extersion)
+  (find-file (concat (getenv "dropbox") "\\home\\notes\\blog\\" (format-time-string "%Y-%m-%d") extersion))
+  )
 
- (defun my-delete-frame ()
+(defun take-html-notes()
+	 "Take a html notes"
+	 (interactive)
+	 (new-notes ".html")
+	 )
+
+(defun take-org-notes()
+  "Take an org note"
+  (interactive)
+  (new-notes ".org")
+  )
+
+(defun my-delete-frame ()
 	 "Deletes the current frame. If this is the last frame, quit Emacs."
   (interactive)
 	(if (cdr (frame-list))
@@ -123,7 +151,7 @@
 )))
 
 
-(defun my-swith-to-scratch()
-  "Deletes the current frame. If this is the last frame, quit Emacs."
-  (interactive)
-  (switch-to-buffer "scratch"))
+(defun my-org-export(arg)
+  (interactive "p")
+  (org-export-as-html arg 'hidden nil "c:\\temp.html")
+)

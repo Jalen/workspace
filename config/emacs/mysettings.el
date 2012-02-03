@@ -18,7 +18,6 @@
       user-full-name                          "Jalen Wang"
       user-mail-address                       "jiayuewang228@gmail.com"
       global-font-lock-mode                   t	
-	  bookmark-file                           "~/MyWorkspace/home/.emacs.bmk"
 )
 
 (put 'dired-find-alternate-file 'disabled nil)
@@ -33,7 +32,10 @@
 (setq kept-new-versions 10)
 (setq delete-old-versions t)
 
-(setq abbrev-file-name "~/MyWorkspace/home/.abbrev_defs") 
+(setq abbrev-file-name (concat DB "\\home\\.abbrev_defs"))
+
+(setq bookmark-file (concat DB "\\home\\.emacs.bmk"))
+
 (setq save-abbrevs t)              ;; save abbrevs when files are saved
 ;; you will be asked before the abbreviations are saved
 
@@ -102,7 +104,7 @@
   (defun server-ensure-safe-dir (dir) "Noop" t)) ; Suppress error "directory
 										; ~/.emacs.d/server is unsafe"
 										; on windows.
-;;(server-start)
+(server-start)
 
 
 ;http://www.emacswiki.org/cgi-bin/wiki?LineNumbers

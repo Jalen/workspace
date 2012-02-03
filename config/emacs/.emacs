@@ -2,12 +2,12 @@
 ;  Run "ln -s .emacs ~/.emacs" under the location of this file
 
 
-(add-to-list 'load-path "~/MyWorkspace/config/emacs")
-(add-to-list 'load-path "~/MyWorkspace/config/lisps")
+(add-to-list 'load-path "~/workspace/config/emacs")
+(add-to-list 'load-path "~/workspace/config/lisps")
 
-(mapc 'load (directory-files "~/MyWorkspace/config/emacs" t "^[a-zA-Z0-9].*.el$"))
+(mapc 'load (directory-files "~/workspace/config/emacs" t "^[a-zA-Z0-9].*.el$"))
 
-(add-to-list 'load-path "~/MyWorkspace/config/lisps/yasnippet")
+(add-to-list 'load-path "~/workspace/config/lisps/yasnippet")
 (require 'yasnippet)
 (yas/global-mode 1)
 

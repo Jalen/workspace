@@ -42,13 +42,13 @@
      (define-key org-agenda-mode-map "\C-p" 'previous-line)
      (define-key org-agenda-keymap "\C-p" 'previous-line)))
 
-(setq org-agenda-files (list "p:\\Home\\GTD\\todo.org"))
+(setq org-agenda-files (list (concat DB "\\Home\\GTD\\todo.org")))
 
 
 ;;http://www.gnu.org/software/emacs/manual/html_node/emacs/Writing-Calendar-Files.html
-(setq cal-html-directory "p:\\Home\\public_html")
+(setq cal-html-directory (concat DB "\\Home\\public_html"))
 
-(setq diary-file "p:\\Home\\diary")
+(setq diary-file (concat DB  "\\Home\\diary"))
 
 
 ;;http://members.optusnet.com.au/~charles57/GTD/mydotemacs.txt
@@ -58,7 +58,11 @@
 (setq org-agenda-exporter-settings
       '((ps-number-of-columns 1)
         (ps-landscape-mode t)
-        (htmlize-output-type 'css)))
+        (htmlize-output-type 'css)
+	   ))
+
+(setq org-export-html-auto-postamble nil)
+(setq org-export-html-postamble "<hr /> <p>Post by: <a href=\"http://www.cnblogs.com/jalenwang/\"><strong>Jalen Wang</strong></a> (<strong>转载请注明出处</strong>)</p>")
 
 (setq org-agenda-custom-commands
 '(
@@ -70,7 +74,10 @@
           (tags-todo "OFFICE")
           (tags-todo "HOME")
           (tags-todo "COMPUTER")
-          (tags-todo "READING")))
+          (tags-todo "READING")
+		  (tags-todo "BLOG")
+		  (tags-todo "PROJECT")
+		  (tags-todo "FINANCIAL")))
 
 ("F" "Office Lists"
      ((agenda)
@@ -138,7 +145,7 @@
 (define-skeleton 1src
   "Input #+begin_src #+end_src in org-mode"
 ""
-"#+begin_src lisp \n"
+"#+begin_src c++ \n"
  _ "\n"
 "#+end_src"
 )
@@ -181,10 +188,34 @@
 ;;http://emacser.com/org-mode.htm
 (require 'org-publish)
 
+;; (setq note-root-dir (concat (getenv "dropbox") "\\home\\notes"))
+
+;; (setq note-publish-dir (concat (getenv "dropbox") "\\home\\publish"))
+
+;; (setq org-publish-project-alist
+;;       `(("note-org"
+;;          :base-directory ,note-root-dir
+;;          :publishing-directory ,note-publish-dir
+;;          :base-extension "org"
+;;          :recursive t
+;;          :publishing-function org-publish-org-to-html
+;;          :auto-index t
+;;          :index-filename "index.org"
+;;          :index-title "index"
+;;          :link-home "index.html")
+;;         ("note-static"
+;;          :base-directory ,note-root-dir
+;;          :publishing-directory ,note-publish-dir
+;;          :recursive t
+;;          :base-extension "css//|js//|png//|jpg//|gif//|pdf//|mp3//|swf//|zip//|gz//|txt//|el"
+;;          :publishing-function org-publish-attachment)
+;;         ("note" :components ("note-org" "note-static")
+;; 		 )))
+
 (setq org-publish-project-alist
 	  '(("note-org"
-		 :base-directory "p:/home/org/org"
-		 :publishing-directory "p:/home/org/publish"
+		 :base-directory "c:/Users/wangjiay/Documents/My DBank/home/notes"
+		 :publishing-directory "c:/Users/wangjiay/Documents/My DBank/home/publish"
 		 :base-extension "org"
 		 :recursive t
 		 :publishing-function org-publish-org-to-html
@@ -194,11 +225,11 @@
 		 :link-home "index.html"
 		 :section-numbers nil
 		 :style "<link rel=\"stylesheet\"
-                 href=\"./emacs.css\"
+                 href=\".static/emacs.css\"
                  type=\"text/css\"/>")
 		("note-static"
-		 :base-directory "p:/home/org/org"
-		 :publishing-directory "p:/home/org/publish"
+		 :base-directory "c:/Users/wangjiay/Documents/My DBank/home/notes"
+		 :publishing-directory "c:/Users/wangjiay/Documents/My DBank/home/publish"
 		 :recursive t
 		 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt\\|el"
 		 :publishing-function org-publish-attachment)

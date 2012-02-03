@@ -32,3 +32,11 @@
 (global-set-key [(meta right)] 'forward-sexp)
 
 (global-set-key (kbd "M-/") 'hippie-expand)
+
+(defun my-swith-to-scratch()
+  "Deletes the current frame. If this is the last frame, quit Emacs."
+  (interactive)
+  (switch-to-buffer "scratch"))
+
+;;(global-set-key (kbd "<f2>") 'my-swith-to-scratch)
+(global-set-key (kbd "<f10>") 'python-shell)
