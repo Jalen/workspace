@@ -22,9 +22,17 @@
 
 (put 'dired-find-alternate-file 'disabled nil)
 
-(setq abbrev-file-name (concat DB "/home/.abbrev_defs"))
+(if (equal window-system 'w32)
+    (progn
+	 (setq abbrev-file-name (concat DB "/home/.abbrev_defs"))
+	 (setq bookmark-file (concat DB "/home/.emacs.bmk"))
+	)
+  (progn
+   (setq abbrev-file-name "~/workspace/home/.abbrev_defs")
+   (setq bookmark-file "~/workspace/home/.emacs.bmk")
+  )
+  )
 
-(setq bookmark-file (concat DB "/home/.emacs.bmk"))
 
 (setq save-abbrevs t)              ;; save abbrevs when files are saved
 ;; you will be asked before the abbreviations are saved

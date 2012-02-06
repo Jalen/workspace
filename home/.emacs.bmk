@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("(define-key semantic-mode-map [C-f12] 'semantic-ia-fast-jump-or-back)"
+(("  (when (eq system-type 'windows-nt)"
+ (filename . "~/workspace/config/emacs/semantic-setting.el")
+ (front-context-string . "  (when (eq syst")
+ (rear-context-string . "-include-dirs))\n")
+ (position . 951))
+("(define-key semantic-mode-map [C-f12] 'semantic-ia-fast-jump-or-back)"
  (filename . "~/Desktop/workspace/config/emacs/semantic-setting.el")
  (front-context-string . "(define-key sema")
  (rear-context-string . "mp (point))))\n\n\n")

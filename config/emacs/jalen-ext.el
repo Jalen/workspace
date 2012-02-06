@@ -3,12 +3,12 @@
 (defun my-todo()
   "Open todo.org"
   (interactive)
-  ( find-file (concat DB "\\Home\\GTD\\todo.org")))
+  ( find-file (concat (getenv "dropbox") "\\Home\\GTD\\todo.org")))
 
 (defun my-emacs()
   "Open emacs.el"
   (interactive)
-  ( find-file (concat DB  "\\Home\\emacs.el")))
+  ( find-file (concat (getenv "dropbox")  "\\Home\\emacs.el")))
 
 (defun my-apps()
   "dired apps folder"
@@ -25,7 +25,7 @@
 (defun my-ahk()
   "Open ahk.org"
   (interactive)
-  ( find-file (concat DB "\\AppData\\ToolsMenu\\AHK.ahk")))
+  ( find-file (concat (getenv "dropbox") "\\AppData\\ToolsMenu\\AHK.ahk")))
 
 (defun go-home()
   "dired the home folder"
