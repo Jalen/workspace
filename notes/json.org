@@ -1,0 +1,60 @@
+
+* JSON
+[[http://www.json.org/][home page]]
+
+JSON (JavaScript Object Notation) is a lightweight data-interchange format. It
+is easy for humans to read and write. It is easy for machines to parse and
+generate. 
+
+* JSON in JavaScript
+
+
+** Operate with a JSON object
+*** Create a JSON object
+#+begin_src js
+var myJSONObject = {"bindings": [
+        {"ircEvent": "PRIVMSG", "method": "newURI", "regex": "^http://.*"},
+        {"ircEvent": "PRIVMSG", "method": "deleteURI", "regex": "^delete.*"},
+        {"ircEvent": "PRIVMSG", "method": "randomURI", "regex": "^random.*"}
+    ]
+};
+#end-src
+*** Retrieve the members
+#+begin_src js
+myJSONObject.bindings[0].method    // "newURI"
+#+end_src
+*** Convert a JSON text into an object
+Using eval() function
+
+#+begin_src js
+var myObject = eval('(' + myJSONtext + ')');
+#+end_src
+
+or using a JSON parser
+#+begin_src js
+myData = JSON.parse(text, function (key, value) {
+    var type;
+    if (value && typeof value === 'object') {
+        type = value.type;
+        if (typeof type === 'string' && typeof window[type] === 'function') {
+            return new (window[type])(value);
+        }
+    }
+    return value;
+});
+#+end_src
+
+*** Convert JavaScript data structures into JSON text
+#+begin_src js
+function replacer(key, value) {
+    if (typeof value === 'number' && !isFinite(value)) {
+        return String(value);
+    }
+    return value;
+}
+
+var myJSONText = JSON.stringify(myObject, replacer);
+#+end_src
+
+
+Note: you can use node.js to test this.
