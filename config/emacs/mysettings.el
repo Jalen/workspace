@@ -136,6 +136,8 @@
 
 ;; Backup stuff...
 (setq backup-directory-alist `(("." . "~/.saves")))
+(setq auto-save-file-name-transforms
+          `((".*" "~/.saves" t)))
 
 (setq delete-old-versions t
   kept-new-versions 6
