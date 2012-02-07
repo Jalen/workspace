@@ -1,6 +1,7 @@
 ; How to use:
 ;  Run "ln -s .emacs ~/.emacs" under the location of this file
 
+(setq DB "~/workspace")
 
 (add-to-list 'load-path "~/workspace/config/emacs")
 (add-to-list 'load-path "~/workspace/config/lisps")
