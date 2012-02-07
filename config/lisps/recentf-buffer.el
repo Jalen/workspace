@@ -105,6 +105,17 @@
       (widget-setup)
       (goto-char (point-min)))))
 
+(defun recentf-find-file (filename)
+  "Edit file FILENAME using `find-file'.
+If FILENAME is not readable it is removed from `recentf-list'."
+  (if (file-readable-p filename)
+      (find-file filename)
+    (progn
+      (message "File `%s' not found." filename)
+      (setq recentf-list (delete filename recentf-list))
+      (setq recentf-update-menu-p t)))
+  )
+
 (defun recentf-open-files-in-simply-buffer-action (widget &rest ignore)
   (kill-buffer (current-buffer))
   (set-window-configuration recentf-windows-configure)

@@ -42,7 +42,7 @@
 
 ;;Below setting are only vaid in the windows systerm
 (when (equal system-type 'windows-nt)
-  (
+  (progn
    (setq org-agenda-files (list (concat DB "\\Home\\GTD\\todo.org")))
 
    ;;http://www.gnu.org/software/emacs/manual/html_node/emacs/Writing-Calendar-Files.html
