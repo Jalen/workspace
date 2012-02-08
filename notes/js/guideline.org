@@ -2,7 +2,8 @@
 * Reference
 http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 * Highlights
-** Curly Braces
+** Formating
+*** Curly Braces
 Because of implicit semicolon insertion, always start your curly braces on the
 same line as whatever they're opening. For example:
 #+begin_src js
@@ -12,7 +13,7 @@ if (something) {
   // ...
 }
 #+end_src
-** Array and Object Initializers
+*** Array and Object Initializers
 Single-line array and object initializers are allowed when they fit on a line:
 #+begin_src js
 var arr = [1, 2, 3];  // No space after [ or before ].
@@ -50,4 +51,133 @@ goog.dom.createDom(goog.dom.TagName.DIV, {
   className: 'some-css-class',
   style: 'display:none'
 }, 'Hello, world!');
+#+end_src
+
+*** Function Arguments
+When possible, all function arguments should be listed on the same line. If
+doing so would exceed the 80-column limit, the arguments must be line-wrapped in
+a readable way. To save space, you may wrap as close to 80 as possible, or put
+each argument on its own line to enhance readability.
+@<font color="#ff0000">
+The indentation may be
+either four spaces, or aligned to the parenthesis.
+@</font>
+
+*** Passing Anonymous Functions
+When declaring an anonymous function in the list of arguments for a function
+call, the body of the function is indented two spaces from the left edge of the
+statement, or two spaces from the left edge of the function keyword. This is to
+make the body of the anonymous function easier to read (i.e. not be all squished
+up into the right half of the screen).
+#+begin_src js
+prefix.something.reallyLongFunctionName('whatever', function(a1, a2) {
+  if (a1.equals(a2)) {
+    someOtherLongFunctionName(a1);
+  } else {
+    andNowForSomethingCompletelyDifferent(a2.parrot);
+  }
+});
+
+var names = prefix.something.myExcellentMapFunction(
+    verboselyNamedCollectionOfItems,
+    function(item) {
+      return item.name;
+    });
+#+end_src
+*** More Indentation
+In fact, except for array and object initializers , and passing anonymous
+functions, all wrapped lines should be indented either left-aligned to the
+expression above, or indented four spaces, not indented two spaces.
+
+#+begin_src js
+someWonderfulHtml = '' +
+                    getEvenMoreHtml(someReallyInterestingValues, moreValues,
+                                    evenMoreParams, 'a duck', true, 72,
+                                    slightlyMoreMonkeys(0xfff)) +
+                    '';
+
+thisIsAVeryLongVariableName =
+    hereIsAnEvenLongerOtherFunctionNameThatWillNotFitOnPrevLine();
+
+thisIsAVeryLongVariableName = 'expressionPartOne' + someMethodThatIsLong() +
+    thisIsAnEvenLongerOtherFunctionNameThatCannotBeIndentedMore();
+
+someValue = this.foo(
+    shortArg,
+    'Some really long string arg - this is a pretty common case, actually.',
+    shorty2,
+    this.bar());
+
+if (searchableCollection(allYourStuff).contains(theStuffYouWant) &&
+    !ambientNotification.isActive() && (client.isAmbientSupported() ||
+                                        client.alwaysTryAmbientAnyways())) {
+  ambientNotification.activate();
+}
+#+end_src
+*** Binary and Ternary Operators
+Always put the operator on the preceding line, so that you don't have to think
+about implicit semi-colon insertion issues. Otherwise, line breaks and
+indentation follow the same rules as in other Google style guides.
+
+#+begin_src js
+var x = a ? b : c;  // All on one line if it will fit.
+
+// Indentation +4 is OK.
+var y = a ?
+    longButSimpleOperandB : longButSimpleOperandC;
+
+// Indenting to the line position of the first operand is also OK.
+var z = a ?
+        moreComplicatedB :
+        moreComplicatedC;
+#+end_src
+
+** Strings
+Prefer ' over "
+
+For consistency single-quotes (') are preferred to double-quotes ("). This is
+helpful when creating strings that include HTML.
+** JavaScript Types
+*** Type Casts
+@<font color="#ff0000">
+In cases where type-checking doesn't accurately infer the type of an expression,
+it is possible to add a type cast comment by adding a type annotation comment
+and enclosing the expression in parentheses. The parentheses are required, and
+may surround the type annotation comment as well.
+@</font>
+
+#+begin_src js
+/** @type {number} */ (x)
+(/** @type {number} */ x)
+#+end_src
+** Comments
+*** JSDoc Indentation
+If you have to line break a block tag, you should treat this as breaking a code
+statement and indent it four spaces.
+#+begin_src js
+/**
+ * Illustrates line wrapping for long param/return descriptions.
+ * @param {string} foo This is a param with a description too long to fit in
+ *     one line.
+ * @return {number} This returns something that has a description too long to
+ *     fit in one line.
+ */
+project.MyClass.prototype.method = function(foo) {
+  return 5;
+};
+#+end_src
+
+*** Top/File-Level Comments
+The top level comment is designed to orient readers unfamiliar with the code to
+what is in this file. It should provide a description of the file's contents,
+its author(s), and any dependencies or compatibility information. As an example:
+
+#+begin_src js
+// Copyright 2009 Google Inc. All Rights Reserved.
+
+/**
+ * @fileoverview Description of file, its uses and information
+ * about its dependencies.
+ * @author user@google.com (Firstname Lastname)
+ */
 #+end_src
