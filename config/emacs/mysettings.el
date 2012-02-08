@@ -160,6 +160,7 @@
 (require 'recentf)
 (recentf-mode 1)
 
+(setq recentf-exclude (quote ("*.html")))
 
 (load "recentf-buffer")
 (global-set-key [?\C-c ?r ?f] 'recentf-open-files-in-simply-buffer)
