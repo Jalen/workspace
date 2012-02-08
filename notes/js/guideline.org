@@ -1,0 +1,53 @@
+
+* Reference
+http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+* Highlights
+** Curly Braces
+Because of implicit semicolon insertion, always start your curly braces on the
+same line as whatever they're opening. For example:
+#+begin_src js
+if (something) {
+  // ...
+} else {
+  // ...
+}
+#+end_src
+** Array and Object Initializers
+Single-line array and object initializers are allowed when they fit on a line:
+#+begin_src js
+var arr = [1, 2, 3];  // No space after [ or before ].
+var obj = {a: 1, b: 2, c: 3};  // No space after { or before }.
+#+end_src
+
+Multiline array initializers and object initializers are indented 
+@<font color="#ff0000">
+ 2 spaces,
+@</font>
+just like blocks.
+
+#+begin_src js
+// Object initializer.
+var inset = {
+  top: 10,
+  right: 20,
+  bottom: 15,
+  left: 12
+};
+
+// Array initializer.
+this.rows_ = [
+  '"Slartibartfast" <fjordmaster@magrathea.com>',
+  '"Zaphod Beeblebrox" <theprez@universe.gov>',
+  '"Ford Prefect" <ford@theguide.com>',
+  '"Arthur Dent" <has.no.tea@gmail.com>',
+  '"Marvin the Paranoid Android" <marv@googlemail.com>',
+  'the.mice@magrathea.com'
+];
+
+// Used in a method call.
+goog.dom.createDom(goog.dom.TagName.DIV, {
+  id: 'foo',
+  className: 'some-css-class',
+  style: 'display:none'
+}, 'Hello, world!');
+#+end_src

@@ -1,0 +1,43 @@
+#+style: <style type="text/css">
+#+style:<!--/*--><![cdata[/*><!--*/
+#+style: div.figure { float:left; }
+#+style: /*]]>*/-->
+#+style: </style>
+ 
+* Home Page
+http://socket.io/
+* What is Socket.IO?
+Socket.IO aims to make realtime apps possible in every browser and mobile
+device, blurring the differences between the different transport
+mechanisms. It's care-free realtime 100% in JavaScript.
+
+
+* Server
+#+begin_src js
+var io = require('socket.io').listen(80);
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+#+end_src
+
+* Client
+#+begin_src js
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://localhost');
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+</script>
+#+end_src
+
+* Implementation
+** Socket.emit
+[[./static/socket-emit.png]]
+** SocketNameSpace.OnPacket
+[[./static/socketnamespace-onpacket.png]]

@@ -1,0 +1,35 @@
+* Useful eclipse Keyboard
+** rectangle selection model
+
+   shift + alt + a
+
+** Template
+   Alt + /
+
+** Go to implementation => F3
+
+** Rename => Shift + Alt + R
+
+** Ctrl + F11
+** Ctrl + E quick browser
+** Ctrl + M Maxiam the active window
+** F12 Active Editor
+** Ctrl + F6 Switch window
+** Ctrl + F7 Switch viewer
+** Control + F8  Switch perspective
+** Ctrl + Shift + O orgnize imports
+** Ctrl + Shift + B add breakpoint
+** ALt + Enter Full screen the simulator
+** Ctrl + Shift + Delete Delete line
+** F2 Show help
+** Ctrl + Shift + F4 close all document
+** Ctrl + Space Code Assist
+This may conflict with the input method, if so, change the input method's
+setting.
+
+
+* Move /Copy the lines
+Select
+
+ALT + UP /Down to move
+Ctrl + ALT + UP /Down to copy and move

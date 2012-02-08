@@ -1,0 +1,17 @@
+
+* Googles Closure Linter
+** Install
+http://code.google.com/closure/utilities/docs/linter_howto.html
+
+So being out of touch lately, I realized that there were Python packages that were best installed via eggs and/or the Python Cheese Shop. Being clueless about it all, I managed to get it working (in Ubuntu) fairly easily using the following method:
+
+    Install the python-setuptools package either via the Synaptic Package Manager or just:sudo apt-get install python-setuptools
+    Then you can use: sudo easy_install packagename
+
+It really doesn¡¯t get much easier than that. I guess I just have been in the
+dark because the major packages I use have debian packages maintained for
+Ubuntu. But this essentially is an apt-get for Python packages maintained via
+the Cheese Shop. Mostly, I just wanted to document the Ubuntu part of it while
+also proving how out of touch I am with the Python community¡­ at least with
+regard to certain things.
+

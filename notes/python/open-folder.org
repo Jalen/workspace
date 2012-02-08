@@ -1,0 +1,38 @@
+* 问题描述
+
+* 解决方案
+
+下面的Python脚本用来在文件浏览器中打开特定的目录。
+
+#+begin_src python
+#exop.py
+import subprocess
+import sys
+import platform
+
+sysstr = platform.system()
+
+if(sysstr == "Windows"):
+    subprocess.Popen('explorer ' + sys.argv[1])
+elif(sysstr == "Linux"):
+    subprocess.Popen('nautilus ' + sys.argv[1])
+else:
+    subprecess.Popen('open ' + sys.argv[1])
+
+#   see
+#   http://www.howtogeek.com/howto/15781/open-a-file-browser-from-your-current-command-promptterminal-directory/
+#   for more information
+
+#+end_src
+
+在我们的项目中，它是给一个eclipse的启动文件用的。
+
+#+begin_src xml
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.ui.externaltools.ProgramLaunchConfigurationType">
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE" value="${none}"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${system_path:python}"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="exop.py &quot;${container_loc}&quot;"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY" value="${workspace_loc:/LaunchFiles}"/>
+</launchConfiguration>
+#+end_src
