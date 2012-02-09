@@ -1,12 +1,16 @@
-import subprocess
+#!/usr/bin/python
+
+import os
 import sys
 import platform
+import pdb
 
 sysstr = platform.system()
 
 if(sysstr == "Windows"):
-    subprocess.Popen('explorer ' + sys.argv[1])
+   os.system('explorer ' + sys.argv[1])
 elif(sysstr == "Linux"):
-    subprocess.Popen('nautilus ' + sys.argv[1])
+    #pdb.set_trace()
+    os.system('nautilus ' + sys.argv[1])
 else:
-    subprecess.Popen('open ' + sys.argv[1])
+    os.system('open ' + sys.argv[1])
