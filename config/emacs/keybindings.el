@@ -14,12 +14,11 @@
 (global-set-key "\M-n" 'my-make-frame)
 ;;End
 
-(global-set-key [f3] 'eshell) ;shell
+(global-set-key [f3] 'shell) ;shell
 (global-set-key [f5] 'query-replace)
 (global-set-key [f7] 'ispell)
 
-(global-set-key (kbd "<f11>") 'calendar)
-(global-set-key (kbd "<f12>") 'list-bookmarks)
+(global-set-key (kbd "<f11>") 'list-bookmarks)
 
 ;;(global-set-key [(tab)] 'my-indent-or-complete)
 (global-set-key [(control shift tab)] 'tabbar-backward)

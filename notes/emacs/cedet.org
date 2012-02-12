@@ -1,0 +1,7 @@
+
+* Keyboard
+** semantic-ia-fast-jump
+
+
+* Ref
+http://alexott.net/en/writings/emacs-devenv/EmacsCedet.html

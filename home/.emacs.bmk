@@ -8,7 +8,7 @@
  (rear-context-string . "-include-dirs))\n")
  (position . 951))
 ("(define-key semantic-mode-map [C-f12] 'semantic-ia-fast-jump-or-back)"
- (filename . "~/Desktop/workspace/config/emacs/semantic-setting.el")
+ (filename . "~/Desktop/workspace/config/emacs/")
  (front-context-string . "(define-key sema")
  (rear-context-string . "mp (point))))\n\n\n")
  (position . 2233))
