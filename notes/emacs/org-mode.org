@@ -1,0 +1,51 @@
+* Learning Notes
+  shift-TAB Overviews of a document
+  C-c C-t org-todo 
+  M-shift-RET org-insert-todo-heading
+  [[link][description] ]
+  C-c c-o org-open-at-point
+  c-c l org-store-link
+  C-c a t => enter the global todo list
+  C-c C-s org-schedule
+  C-C C-W refile
+  
+http://doc.norang.ca/org-mode.html#sec-13
+
+* Tasks
+** DONE Start new org file for tutorial
+   CLOSED: [2010-12-21 周二 20:48]
+   - CLOSING NOTE [2010-12-21 周二 20:48] \\
+     Done
+** DONE Outline document
+   CLOSED: [2010-12-21 周二 20:50]
+   - CLOSING NOTE [2010-12-21 周二 20:50] \\
+     done
+** TODO Write introduction
+
+* Introduction
+
+Org-mode is a personal information management and outling tool for Emacs.
+This document is intended to give the reader a "feel" for org-mode and to
+teach basic operations.
+
+** Obtaining org-mode
+
+You can download org-mode from [[http://orgmode.org/worg/org-tutorials/orgtutorial_dto.php][org-mode home page.]]
+
+** Installation
+** configuration
+* The basics
+** Creating a new file
+** Simple task list
+** Using headlines to structure a document
+** Links to other places
+** Adding notes to a task
+** Scheduling an appointment
+** Using the ageda
+ 
+* Keyboard
+** begin_src
+
+C-c '	Edit the source code in its native mode in another buffer
+
+ref http://blog.csdn.net/pfanaya/article/details/6676307

@@ -1,27 +1,29 @@
 
 * JSON
-[[http://www.json.org/][home page]]
 
 JSON (JavaScript Object Notation) is a lightweight data-interchange format. It
 is easy for humans to read and write. It is easy for machines to parse and
 generate. 
 
+More information is availble on the [[http://www.json.org/][home page]].
+
 * JSON in JavaScript
-
-
 ** Operate with a JSON object
 *** Create a JSON object
 #+begin_src js
-var myJSONObject = {"bindings": [
-        {"ircEvent": "PRIVMSG", "method": "newURI", "regex": "^http://.*"},
-        {"ircEvent": "PRIVMSG", "method": "deleteURI", "regex": "^delete.*"},
-        {"ircEvent": "PRIVMSG", "method": "randomURI", "regex": "^random.*"}
-    ]
-};
-#end-src
+  // Declare a JSON object (string => array)
+  var myJSONObject = {"bindings": [
+          {"ircEvent": "PRIVMSG", "method": "newURI", "regex": "^http://.*"},
+          {"ircEvent": "PRIVMSG", "method": "deleteURI", "regex": "^delete.*"},
+          {"ircEvent": "PRIVMSG", "method": "randomURI", "regex": "^random.*"}
+      ]
+  };
+#+end_src
+
 *** Retrieve the members
+
 #+begin_src js
-myJSONObject.bindings[0].method    // "newURI"
+    myJSONObject.bindings[0].method    // "newURI"
 #+end_src
 *** Convert a JSON text into an object
 Using eval() function
@@ -58,3 +60,111 @@ var myJSONText = JSON.stringify(myObject, replacer);
 
 
 Note: you can use node.js to test this.
+* JSon in C#
+** Send JSON
+#+begin_src c++
+  // New a object from the anonym class
+  var serverReadyMsg = new { 
+                              req_type = "serverReady",
+                              port = int.Parse(System.Environment.GetEnvironmentVariable("channel_port"))
+                           };
+  
+  var client = new TcpClient();
+  client.Connect(System.Environment.GetEnvironmentVariable("manager_host_name"), int.Parse(System.Environment.GetEnvironmentVariable("manager_port")));
+  
+  // Serialize the object
+  JsonSerializerSettings settings = new JsonSerializerSettings();
+  settings.NullValueHandling = NullValueHandling.Ignore;
+  string json = JsonConvert.SerializeObject(serverReadyMsg, Formatting.None, settings);
+  
+  // Prepare the Data   
+  var memoryStream = new MemoryStream();
+  memoryStream.SetLength(0);
+  memoryStream.Position = 0;
+  // Allocate room for the outgoing size
+  memoryStream.Write(new byte[] { 0, 0, 0, 0 }, 0, 4);
+  
+  System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
+  memoryStream.Write(encoder.GetBytes(json), 0, json.Length);
+  
+  NetworkStream stream = client.GetStream();
+  
+  Byte[] bytes = BitConverter.GetBytes((uint)(memoryStream.Length - 4));
+  Byte[] outArray = memoryStream.ToArray();
+  bytes.CopyTo(outArray, 0);
+  stream.Write(outArray, 0, (int)memoryStream.Length);
+  stream.Flush();
+#+end_src
+** Parser JSON
+#+begin_src c++
+  string receivedString = string.Empty;
+  System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
+  System.Text.Decoder utf8Decode = encoder.GetDecoder();
+  try
+  {
+      int receivedBufferSize = tcpClient.ReceiveBufferSize;
+      if (receivedBufferSize > 0)
+      {
+          // Retrieve the data from the socket
+          byte[] data = new byte[receivedBufferSize];
+    
+          int dataLength = tcpClient.GetStream().Read(data, 0, data.Length);
+    
+          char[] receivedChars = new char[dataLength - 4];
+          utf8Decode.GetChars(data, 4, dataLength - 4, receivedChars, 0, true);
+          receivedString = new String(receivedChars);
+    
+          // Use Linq to JSON to parse the input
+          JObject jobject = JObject.Parse(receivedString);
+          JToken token = jobject["req_type"];
+    
+          string req_type = (string)token;
+          
+          // Dispatch the request
+          switch (req_type)
+          {
+              case "newServerInstance":
+                  break;
+              case "deleteServerInstance":
+                  break;
+              case "serverReady":
+                  break;
+          }
+      }
+  }
+  catch (System.IO.IOException)
+  {
+  }
+#+end_src
+
+
+** Linq to JSon
+
+Code snippet from :
+http://blog.csdn.net/zhoufoxcn/article/details/6254657
+
+#+begin_src c++
+    public static void JsonConvertLinqDemo()  
+    {  
+        User user = new User { UserId = 1, UserName = "周公", CreateDate = DateTime.Now.AddYears(-8), Birthday = DateTime.Now.AddYears(-32), Priority = Priority.Lowest, Salary = 500, Urls = new List<string> { "http://zhoufoxcn.blog.51cto.com", "http://blog.csdn.net/zhoufoxcn" } };  
+        //JsonConvert类在Newtonsoft.Json.Net35.dll中，注意到http://www.codeplex.com/json/下载这个dll并添加这个引用  
+        //JSON序列化  
+        string result = JsonConvert.SerializeObject(user);  
+        Console.WriteLine("使用JsonConvert序列化后的结果：{0},长度：{1}", result, result.Length);  
+        //使用Linq to JSON  
+        JObject jobject = JObject.Parse(result);  
+        JToken token = jobject["Urls"];  
+        List<string> urlList = new List<string>();  
+        foreach (JToken t in token)  
+        {  
+            urlList.Add(t.ToString());  
+        }  
+        Console.Write("使用Linq to JSON反序列化后的结果：[");  
+        for (int i = 0; i < urlList.Count - 1;i++ )  
+        {  
+            Console.Write(urlList[i] + ",");  
+        }  
+        Console.WriteLine(urlList[urlList.Count - 1] + "]");  
+    }
+#+end_src
+

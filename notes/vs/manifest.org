@@ -1,0 +1,89 @@
+
+* What is Assembly Manifest
+Every assembly, whether static or dynamic, contains a collection of data that
+describes how the elements in the assembly relate to each other. The assembly
+manifest contains this assembly metadata. An assembly manifest contains all the
+metadata needed to specify the assembly's version requirements and security
+identity, and all metadata needed to define the scope of the assembly and
+resolve references to resources and classes. The assembly manifest can be stored
+in either a PE file (an .exe or .dll) with Microsoft intermediate language
+(MSIL) code or in a standalone PE file that contains only assembly manifest
+information.
+
+Read http://msdn.microsoft.com/en-us/library/1w45z383.aspx for more information.
+
+* How to embed additional manifest in a c++ project within VS2010
+
+In VS2010, you can embed an additional manifest file using the project's setting
+dialog.
+
+[[./static/vc-manifest-setting.png]]
+
+Read http://blogs.msdn.com/b/zakramer/archive/2006/05/22/603558.aspx to know
+"How does VS 2005 Embed Native Manifest Files"
+
+* How to embed additional manifest in a C# project within VS2010
+
+A C# project is a msbuild project, and the output module is created by the
+Microsoft.CSharp.targets.
+#+begin_src xml
+<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+#+end_src
+And in Microsoft.CSharp.targets, the manifest can be specified by the
+Win32Manifest varaiable.
+
+
+#+begin_src xml
+ <!-- Condition is to filter out the _CoreCompileResourceInputs so that it doesn't pass in culture resources to the compiler -->
+        <Csc  Condition=" '%(_CoreCompileResourceInputs.WithCulture)' != 'true' "
+              AdditionalLibPaths="$(AdditionalLibPaths)"
+              AddModules="@(AddModules)"
+              AllowUnsafeBlocks="$(AllowUnsafeBlocks)"
+              ApplicationConfiguration="$(AppConfigForCompiler)"
+              BaseAddress="$(BaseAddress)"
+              CheckForOverflowUnderflow="$(CheckForOverflowUnderflow)"
+              CodePage="$(CodePage)"
+              DebugType="$(DebugType)"
+              DefineConstants="$(DefineConstants)"
+              DelaySign="$(DelaySign)"
+              DisabledWarnings="$(NoWarn)"
+              DocumentationFile="@(DocFileItem)"
+              EmitDebugInformation="$(DebugSymbols)"
+              ErrorReport="$(ErrorReport)"
+              FileAlignment="$(FileAlignment)"
+              GenerateFullPaths="$(GenerateFullPaths)"
+              KeyContainer="$(KeyContainerName)"
+              KeyFile="$(KeyOriginatorFile)"
+              LangVersion="$(LangVersion)"
+              MainEntryPoint="$(StartupObject)"
+              ModuleAssemblyName="$(ModuleAssemblyName)"
+              NoConfig="true"
+              NoLogo="$(NoLogo)"
+              NoStandardLib="$(NoCompilerStandardLib)"
+              NoWin32Manifest="$(NoWin32Manifest)"
+              Optimize="$(Optimize)"
+              OutputAssembly="@(IntermediateAssembly)"
+              PdbFile="$(PdbFile)" 
+              Platform="$(PlatformTarget)"
+              References="@(ReferencePath)"
+              Resources="@(_CoreCompileResourceInputs);@(CompiledLicenseFile)"
+              ResponseFiles="$(CompilerResponseFile)"
+              Sources="@(Compile)"
+              TargetType="$(OutputType)"
+              ToolExe="$(CscToolExe)"
+              ToolPath="$(CscToolPath)"
+              TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
+              UseHostCompilerIfAvailable="$(UseHostCompilerIfAvailable)"
+              Utf8Output="$(Utf8Output)"
+              WarningLevel="$(WarningLevel)"
+              WarningsAsErrors="$(WarningsAsErrors)"
+              WarningsNotAsErrors="$(WarningsNotAsErrors)"
+              Win32Icon="$(ApplicationIcon)"
+              Win32Manifest="$(Win32Manifest)"
+              Win32Resource="$(Win32Resource)"
+              />
+#+end_src
+
+So to specify the manifest file, I change the project file as this:
+[[./static/c#-manifest-setting.png]]
+

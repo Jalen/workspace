@@ -1,0 +1,8 @@
+
+* Embed html
+
+http://orgmode.org/org.html#Quoting-HTML-tags
+
+#+BEGIN_HTML
+     All lines between these markers are exported literally
+#+END_HTML

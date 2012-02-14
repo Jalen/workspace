@@ -1,0 +1,54 @@
+#+style: <style type="text/css">
+#+style:<!--/*--><![cdata[/*><!--*/
+#+style: div.figure { float:left; }
+#+style: /*]]>*/-->
+#+style: </style>
+ 
+* How to build the node.js
+
+1. Sync the code
+2. Run the follow code
+#+begin_src bash
+echo 'export PATH=$HOME/local/bin:$PATH' >> ~/.bashrc
+
+. ~/.bashrc
+
+mkdir ~/local
+
+./static/configure --prefix ~/.local --debug --gdb
+
+make install 
+#+end_src
+
+Note: 
+Maybe you need install the zlib, if you meet error.
+
+* Debug Node.js Application
+** Run the application as <node debug app.js>
+** Type <help> to see the available debug commands
+[[./static/debug.png]]
+** Use repl mode to evaluate the viariable
+[[./static/repl.png]]
+
+** watcher
+[[./static/watch.png]]
+
+* Comet with node.js and V8
+  ref:http://www.slideshare.net/amix3k/comet-with-nodejs-and-v8?src=related_normal&rel=4825024
+
+#+BEGIN_HTML
+<div style="width:425px" id="__ss_2793335"> <strong
+style="display:block;margin:12px 0 4px"><a
+href="http://www.slideshare.net/amix3k/comet-with-nodejs-and-v8" title="Comet
+with node.js and V8" target="_blank">Comet with node.js and V8</a></strong>
+<iframe src="http://www.slideshare.net/slideshow/embed_code/2793335" width="425"
+height="355" frameborder="0" marginwidth="0" marginheight="0"
+scrolling="no"></iframe> <div style="padding:5px 0 12px"> View more <a
+href="http://www.slideshare.net/" target="_blank">presentations</a> from <a
+href="http://www.slideshare.net/amix3k" target="_blank">amix3k</a> </div> </div>
+#+END_HTML
+
+** Highlights:
+[[./static/non-blocking.png]]
+
+[[./static/events.png]]

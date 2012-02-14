@@ -1,0 +1,15 @@
+
+* Bash history
+** recall
+   
+   !1 => to recall/execute the first item in the history
+** search
+   ctrl-r => reverse incremental history search mode
+   Enter => immediately reall and execute the command
+   ctrl-j or Escape => retrieve the command, but alow you to continue edition
+   ctrl-g or ctrl-c => cancel
+** filter what gets stored in the command history
+   export HISTIGNORE="&:ls:[bf]g:exit"
+
+
+ref: http://talug.org/events/20030709/cmdline_history.html

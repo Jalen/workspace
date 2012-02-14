@@ -1,0 +1,319 @@
+
+* Hello World
+#+begin_src html 
+<html>
+<body>
+<script type="text/javascript">
+document.write("Hello World!");
+</script>
+</body>
+</html>
+#+end_src
+* Where to place the JavaScripte
+当页面载入时，会执行位于 body 部分的 JavaScript。
+
+当被调用时，位于 head 部分的 JavaScript 才会被执行。
+
+#+begin_src c++ 
+<html>
+<head>
+<script type="text/javascript">
+function message()
+{
+alert("该提示框是通过 onload 事件调用的。")
+}
+</script>
+</head>
+
+<body onload="message()">
+
+</body>
+</html>
+
+#+end_src
+
+#+begin_src c++ 
+<html>
+<head>
+</head>
+
+<body>
+
+<script type="text/javascript">
+document.write("该消息在页面加载时输出。")
+</script>
+
+</body>
+</html>
+
+#+end_src
+
+external JS file
+#+begin_src c++ 
+<html>
+<head>
+<script src="xxx.js">....</script>
+</head>
+<body>
+</body>
+</html>
+#+end_src
+
+* JS Command
+** document.write
+** MessageBox
+*** alert(msg)
+*** confirm(msg)
+*** prompt(msg, defaultvalue)
+* JS Syntax
+** 语句
+** 代码
+   JavaScript 代码是 JavaScript 语句的序列。
+#+begin_src c++ 
+<html>
+<body>
+
+<script type="text/javascript">
+document.write("<h1>这是标题</h1>");
+document.write("<p>这是段落。</p>");
+document.write("<p>这是另一个段落。</p>");
+document.write("<p><b>这是另一个段落。</b></p>");
+</script>
+
+</body>
+</html>
+
+#+end_src
+** 代码块
+
+#+begin_src c++ 
+<script type="text/javascript">
+{
+document.write("<h1>This is a header</h1>");
+document.write("<p>This is a paragraph</p>");
+document.write("<p>This is another paragraph</p>");
+}
+</script>
+#+end_src
+** 注释
+   单行的注释以 // 开始。
+#+begin_src c++ 
+<html>
+<body>
+
+<script type="text/javascript">
+// 这行代码输出标题：
+document.write("<h1>这是标题</h1>");
+// 这行代码输出段落：
+document.write("<p>这是段落。</p>");
+document.write("<p>这是另一个段落。</p>");
+</script>
+
+</body>
+</html>
+
+#+end_src
+** 多行注释
+多行注释以 /* 开头，以 */ 结尾。
+** 变量
+JavaScript 变量名称的规则：
+
+    变量对大小写敏感（y 和 Y 是两个不同的变量）
+    变量必须以字母或下划线开始
+
+#+begin_src c++ 
+x=5; length=66.10;
+#+end_src
+*** 声明
+#+begin_src c++ 
+var x;
+var carname;
+#+end_src
+** 运算符
+
+如果把数字与字符串相加，结果将成为字符串。
+** if else
+#+begin_src c++ 
+<script type="text/javascript">
+
+var d = new Date()
+var time = d.getHours()
+
+if (time<10)
+{
+document.write("<b>Good morning</b>")
+}
+else if (time>10 && time<16)
+{
+document.write("<b>Good day</b>")
+}
+else
+{
+document.write("<b>Hello World!</b>")
+}
+</script>
+#+end_src
+* function
+** Declare
+#+begin_src c++ 
+function 函数名(var1,var2,...,varX)
+  {
+  代码．．．
+  }
+#+end_src
+** return
+* loop
+** for
+#+begin_src c++ 
+for (变量=开始值;变量<=结束值;变量=变量+步进值) 
+{
+    需执行的代码
+}
+#+end_src
+** while
+#+begin_src c++ 
+while (变量<=结束值)
+{
+    需执行的代码
+}
+#+end_src
+* for...in
+  For...In 声明用于对数组或者对象的属性进行循环操作。
+
+  for ... in 循环中的代码每执行一次，就会对数组的元素或者对象的属性进行一次操作。
+
+#+begin_src c++ 
+<html>
+<body>
+
+<script type="text/javascript">
+var x
+var mycars = new Array()
+mycars[0] = "Saab"
+mycars[1] = "Volvo"
+mycars[2] = "BMW"
+
+for (x in mycars)
+{
+document.write(mycars[x] + "<br />")
+}
+</script>
+
+</body>
+</html>
+#+end_src
+* event
+  事件是可以被 JavaScript 侦测到的行为。
+  [[http://www.w3school.com.cn/js/jsref_events.asp]]
+* 特殊字符
+* JS Class
+  动态语言
+** 原始方式
+#+begin_src c++ 
+<html>
+<body>
+
+<script type="text/javascript">
+
+var oCar = new Object;
+oCar.color = "blue";
+oCar.doors = 4;
+oCar.mpg = 25;
+oCar.showColor = function() {
+  document.write(this.color);
+};
+
+oCar.showColor();
+
+</script>
+
+</body>
+</html>
+#+end_src
+** 工厂方式
+#+begin_src c++ 
+<html>
+<body>
+
+<script type="text/javascript">
+
+function createCar() {
+  var oTempCar = new Object;
+  oTempCar.color = "blue";
+  oTempCar.doors = 4;
+  oTempCar.mpg = 25;
+  oTempCar.showColor = function() {
+    document.write(this.color);
+  };
+  return oTempCar;
+}
+
+var oCar1 = createCar();
+var oCar2 = createCar();
+
+oCar1.showColor();
+document.write("<br />")
+oCar2.showColor();
+
+</script>
+
+</body>
+</html>
+
+#+end_src
+
+** 构造函数方式
+#+begin_src c++ 
+function Car(sColor,iDoors,iMpg) {
+  this.color = sColor;
+  this.doors = iDoors;
+  this.mpg = iMpg;
+  this.showColor = function() {
+    alert(this.color);
+  };
+}
+
+var oCar1 = new Car("red",4,23);
+var oCar2 = new Car("blue",3,25);
+#+end_src
+
+首先在构造函数内没有创建对象，而是使用 this 关键字。使用 new 运算符构造函数时，
+在执行第一行代码前先创建一个对象，只有用 this 才能访问该对象。然后可以直接赋予
+this 属性，默认情况下是构造函数的返回值（不必明确使用 return 运算符）。
+
+** 原型方式
+#+begin_src c++ 
+function Car() {
+}
+
+Car.prototype.color = "blue";
+Car.prototype.doors = 4;
+Car.prototype.mpg = 25;
+Car.prototype.showColor = function() {
+  alert(this.color);
+};
+
+var oCar1 = new Car();
+var oCar2 = new Car();
+#+end_src
+** 混合的构造函数/原型方式
+#+begin_src c++ 
+function Car(sColor,iDoors,iMpg) {
+  this.color = sColor;
+  this.doors = iDoors;
+  this.mpg = iMpg;
+  this.drivers = new Array("Mike","John");
+}
+
+Car.prototype.showColor = function() {
+  alert(this.color);
+};
+
+var oCar1 = new Car("red",4,23);
+var oCar2 = new Car("blue",3,25);
+
+oCar1.drivers.push("Bill");
+
+alert(oCar1.drivers);	//输出 "Mike,John,Bill"
+alert(oCar2.drivers);	//输出 "Mike,John"
+#+end_src

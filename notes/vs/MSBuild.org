@@ -1,0 +1,99 @@
+* 基本定义
+属性是键/值的配对，相应于：
+
+ 环境变量
+ 项目文件自身中的定义
+ 使用 /p 传递给 msbuild.exe 的命令行参数 
+* 项
+#+BEGIN_EXAMPLE
+   <Item Type="FilesToCompile" Include="file1.cs"/>  
+   <Item Type="FilesToCompile" Include="file2.cs"/>  
+   <Item Type="FilesToCompile" Include="file3.cs"/>
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+<Item Type="FilesToCompile" Include="*.cs"/>
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+<Item Type="FilesToCompile" Include="file1.cs;file2.cs;file3.cs" />
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE
+<Item Type="FilesToCompile" Include="*.cs" Exclude="Bad*.cs"/>
+#+END_EXAMPLE
+* 任务和属性
+项可以用作任务的输入。相应的 XML Task 元素有一个强制的属性：它的 Name 属性。您为
+该属性设置的值会告诉引擎要执行的任务的种类。MSBuild 提供了几个现成可用的任务，例
+如 Copy、Csc、Exec、MakeDir、MSBuild、ResGen 和 Vbc。
+
+#+BEGIN_EXAMPLE
+   <Item Type="FilesToCompile" Include="*.cs"/>  
+
+   <Target Name="BuildHelloWorldExecutable">
+      <Task 
+         Name="csc" 
+         Sources="@(FilesToCompile)"
+         OutputAssembly="HelloWorld.exe"
+         TargetType="exe"
+      />
+   </Target>
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+<Project>
+   <Property 
+      ExecutableName="HelloWorld" 
+   />
+   <Property 
+      OutputPath="bin" 
+   />
+
+   <Item 
+      Type="FilesToCompile" 
+      Include="*.cs"
+   />  
+
+   <Target Name="BuildHelloWorldExecutable">
+      <Task
+         Name="MakeDir"
+         Directories="$(OutputPath)"
+      />
+      <Task 
+         Name="csc" 
+         Sources="@(FilesToCompile)"  
+         OutputAssembly="$(OutputPath)\$(ExecutableName).exe"
+         TargetType="exe"
+      />
+   </Target>
+</Project>
+#+END_EXAMPLE
+
+* 使用条件进行选择
+#+BEGIN_EXAMPLE
+   <PropertyGroup Condition="'$(Configuration)'=='DEBUG'">
+      <Property OutputPath="bin\debug" />
+      ...
+   </PropertyGroup>
+
+   <PropertyGroup Condition="'$(Configuration)'=='RELEASE'">
+      <Property OutputPath="bin\release" />
+      ...
+   </PropertyGroup>
+#+END_EXAMPLE
+
+
+* Summary
+  属性是指定输入参数，任务是实际的过程，从属于一个特定的目标
+  
+  可以改变Visual Studio MSBuild的设置，了解编译的过程
+  Options->Projects and Solutions->Build and Run->MSBuild...
+
+任务就是 MSBuild 中的基本生成块。Target 将任务以特殊顺序组合在一起。它的 Name 是
+唯一的强制属性，因为您需要能够在命令行使用 /t 开关传递该属性，或者在 Project XML
+根节点的 DefaultTargets 属性中传递该属性，这样才能使 MSBuild 知道要执行的任务。
+在项目文件中，Tasks 元素的定义顺序非常重要，因为 MSBuild 每次针对给定目标执行一
+个任务。
+
+* Reference:
+** [[http://www.microsoft.com/china/MSDN/library/windev/longhorn/LHmsbuildpart1.mspx?mfr=true][msdn]]
+** [[http://msdn.microsoft.com/en-us/library/ms171452.aspx][MSBuild Overview]]
