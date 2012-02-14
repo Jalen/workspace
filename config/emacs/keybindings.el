@@ -16,7 +16,7 @@
 
 (global-set-key [f3] 'shell) ;shell
 (global-set-key [f5] 'query-replace)
-(global-set-key [f7] 'ispell)
+;;(global-set-key [f7] 'ispell)
 
 (global-set-key (kbd "<f11>") 'list-bookmarks)
 
