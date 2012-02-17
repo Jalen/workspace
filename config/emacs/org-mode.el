@@ -160,7 +160,7 @@
 (setq org-timeline-show-empty-dates t)
 (setq org-insert-mode-line-in-empty-file t)
 (setq org-export-with-toc nil)
-
+(setq org-export-with-section-numbers nil)
 
 ;;http://www.cnblogs.com/doveyoung/archive/2011/01/12/Emacs-17.html
 ;; skeleton

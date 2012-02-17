@@ -1,0 +1,11 @@
+
+* Scripts Panel
+http://code.google.com/chrome/devtools/docs/scripts.html
+
+- Continue: F8 or Command-/ (forward slash) on Mac or Control-/ (forward slash) on other platforms.
+- Step over: F10 or Command-' (apostrophe) on Mac or Control-' (apostrophe) on other platforms.
+- Step into: F11 or Command-; (semi-colon) on Mac or Control-; (semi-colon); on other platforms.
+- Step out: Shift-F11 or Shift-Command-; (semi-colon) on Mac or Shift-Control-; (semi-colon) on other platforms.
+- Next call frame: Control-. (period) on all platforms.
+- Previous call frame: Control-, (comma) on all platforms.
+- Go to line: Control-G

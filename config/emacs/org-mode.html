@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>;; org mode</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-02-16 14:05:42 "/>
+<meta name="author" content="Jalen Wang"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+
+<h1 class="title">;; org mode</h1>
+
+
+<p>
+; The following lines are always needed.  Choose your own keys.
+(require 'org-install)
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+</p>
+<p>
+(define-key mode-specific-map [ a] 'org-agenda)
+</p>
+<p>
+(require 'remember)
+</p>
+<p>
+(add-hook 'remember-mode-hook 'org-remember-apply-template)
+</p>
+<p>
+(eval-after-load "org"
+'(progn
+(define-prefix-command 'org-todo-state-map)
+</p>
+<p>
+(define-key org-mode-map "\C-cx" 'org-todo-state-map)
+</p>
+<p>
+(define-key org-todo-state-map "x"
+#'(lambda nil (interactive) (org-todo "CANCELLED")))
+(define-key org-todo-state-map "d"
+#'(lambda nil (interactive) (org-todo "DONE")))
+(define-key org-todo-state-map "f"
+#'(lambda nil (interactive) (org-todo "DEFERRED")))
+(define-key org-todo-state-map "l"
+#'(lambda nil (interactive) (org-todo "DELEGATED")))
+(define-key org-todo-state-map "s"
+#'(lambda nil (interactive) (org-todo "STARTED")))
+(define-key org-todo-state-map "w"
+#'(lambda nil (interactive) (org-todo "WAITING")))
+))
+</p>
+<p>
+(eval-after-load "org-agenda"
+'(progn
+(define-key org-agenda-mode-map "\C-n" 'next-line)
+(define-key org-agenda-keymap "\C-n" 'next-line)
+(define-key org-agenda-mode-map "\C-p" 'previous-line)
+(define-key org-agenda-keymap "\C-p" 'previous-line)))
+</p>
+<p>
+;;Below setting are only vaid in the windows systerm
+(when (equal system-type 'windows-nt)
+(progn
+(setq org-agenda-files (list (concat DB "\\Home\\GTD\\todo.org")))
+</p>
+<p>
+;;<a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Writing-Calendar-Files.html">http://www.gnu.org/software/emacs/manual/html_node/emacs/Writing-Calendar-Files.html</a>
+(setq cal-html-directory (concat DB "\\Home\\public<sub>html</sub>"))
+</p>
+<p>
+(setq diary-file (concat DB  "\\Home\\diary"))
+</p>
+<p>
+;;<a href="http://members.optusnet.com.au/~charles57/GTD/mydotemacs.txt">http://members.optusnet.com.au/~charles57/GTD/mydotemacs.txt</a>
+(define-key global-map [f8] 'remember)
+(define-key global-map [f9] 'remember-region)
+</p>
+
+<p>
+(setq org-agenda-custom-commands
+'(
+("P" "Projects"   
+((tags "PROJECT")))
+</p>
+<p>
+("H" "Office and Home Lists"
+((agenda)
+(tags-todo "OFFICE")
+(tags-todo "HOME")
+(tags-todo "COMPUTER")
+(tags-todo "READING")
+(tags-todo "BLOG")
+(tags-todo "PROJECT")
+(tags-todo "FINANCIAL")))
+</p>
+<p>
+("F" "Office Lists"
+((agenda)
+(tags-todo "OFFICE")
+(tags-todo "COMPUTER")
+(tags-todo "READING")))
+</p>
+
+<p>
+("M" "Home Lists"
+((agenda)
+(tags-todo "HOME")
+(tags-todo "COMPUTER")
+(tags-todo "READING")))
+</p>
+<p>
+("D" "Daily Action List"
+(
+(agenda "" ((org-agenda-ndays 1)
+(org-agenda-sorting-strategy
+(quote ((agenda time-up priority-down tag-up) )))
+(org-deadline-warning-days 0)
+))))
+)
+)
+</p>
+
+
+
+<p>
+;;(diary)
+</p>
+
+<p>
+(add-hook 'org-agenda-mode-hook 'hl-line-mode)
+</p>
+<p>
+(setq remember-annotation-functions '(org-remember-annotation)
+remember-handler-functions '(org-remember-handler)
+org-fast-tag-selection-single-key 'expert
+org-export-html-coding-system 'utf-8
+org-publish-use-timestamps-flag nil
+org-todo-keyword-faces
+'(("DONE" . (:foreground "green" :weight))
+("DEFERRED" . (:foreground "orange" :weight bold))
+("CANCELLED" . (:foreground "red" :weight bold))))
+</p>
+
+
+<p>
+;;<a href="http://blog.csdn.net/meteor1113/archive/2009/07/30/4395673.aspx">http://blog.csdn.net/meteor1113/archive/2009/07/30/4395673.aspx</a>
+;;<a href="http://emacser.com/org-mode.htm">http://emacser.com/org-mode.htm</a>
+(require 'org-publish)
+</p>
+<p>
+(setq org-publish-project-alist
+'(("note-org"
+:base-directory "c:/Users/wangjiay/Documents/My DBank/home/notes"
+:publishing-directory "c:/Users/wangjiay/Documents/My DBank/home/publish"
+:base-extension "org"
+:recursive t
+:publishing-function org-publish-org-to-html
+:auto-index nil
+:index-filename "index.org"
+:index-title "index"
+:link-home "index.html"
+:section-numbers nil
+:style "&lt;link rel=\"stylesheet\"
+href=\".static/emacs.css\"
+type=\"text/css\"/&gt;")
+("note-static"
+:base-directory "c:/Users/wangjiay/Documents/My DBank/home/notes"
+:publishing-directory "c:/Users/wangjiay/Documents/My DBank/home/publish"
+:recursive t
+:base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt\\|el"
+:publishing-function org-publish-attachment)
+("note"       :components ("note-org" "note-static")
+:author "jiayuewang228@gmail.com"
+)))
+</p>
+<p>
+;;global-set-key (kbd "&lt;f8&gt; p") 'org-publish)
+)
+) ;; end of windows-nt 
+</p>
+
+<p>
+(setq org-agenda-exporter-settings
+'((ps-number-of-columns 1)
+(ps-landscape-mode t)
+(htmlize-output-type 'css)
+))
+</p>
+<p>
+(setq org-export-html-auto-postamble nil)
+(setq org-export-html-postamble "&lt;hr /&gt; &lt;p&gt;Post by: &lt;a href=\"<a href="http://www.cnblogs.com/jalenwang/\"">http://www.cnblogs.com/jalenwang/\"</a>&gt;&lt;strong&gt;Jalen Wang&lt;/strong&gt;&lt;/a&gt; (&lt;strong&gt;转载请注明出处&lt;/strong&gt;)&lt;/p&gt;")
+</p>
+<p>
+(setq org-agenda-include-diary nil)
+(setq org-timeline-show-empty-dates t)
+(setq org-insert-mode-line-in-empty-file t)
+(setq org-export-with-toc nil)
+(setq org-export-with-section-numbers nil)
+</p>
+<p>
+;;<a href="http://www.cnblogs.com/doveyoung/archive/2011/01/12/Emacs-17.html">http://www.cnblogs.com/doveyoung/archive/2011/01/12/Emacs-17.html</a>
+;; skeleton
+(define-skeleton 1exp 
+"Input #+BEGIN<sub>EXAMPLE</sub> #+END<sub>EXAMPLE</sub> in org-mode"
+""
+"#+BEGIN<sub>EXAMPLE\n</sub>"
+_ "\n" 
+"#+END<sub>EXAMPLE</sub>"
+)
+</p>
+<p>
+(define-abbrev org-mode-abbrev-table "iexp" "" '1exp)
+</p>
+<p>
+(define-skeleton 1src
+"Input #+begin<sub>src</sub> #+end<sub>src</sub> in org-mode"
+""
+"#+begin<sub>src</sub> c++ \n"
+_ "\n"
+"#+end<sub>src</sub>"
+)
+</p>
+<p>
+(define-abbrev org-mode-abbrev-table "isrc" "" '1src)
+</p>
+<p>
+;; eLisp
+(defun i-babel-quote (beg end str1 str2)
+(goto-char end)
+(forward-line 1)
+(insert str2)
+(newline)
+(goto-char beg)
+(forward-line -1)
+(newline)
+(insert str1)
+)
+</p>
+<p>
+(defun iexp (St Ed)
+"Enclose example for org-mode"
+(interactive "r")
+(let ((beg St) (end Ed))
+(message "%s %s" beg end)
+(i-babel-quote beg end "#+BEGIN<sub>EXAMPLE</sub>" "#+END<sub>EXAMPLE</sub>")))
+</p>
+<p>
+(defun isrc (St Ed)
+"Enclose code for org-mode"
+(interactive "r")
+(let ((beg St) (end Ed))
+(message "%s %s" beg end)
+(i-babel-quote beg end "#+begin<sub>src</sub> " "#+end<sub>src</sub>")))
+</p>
+<p>
+(add-hook 'org-mode-hook 'turn-on-font-lock)
+(add-hook 'org-mode-hook 
+(lambda () (setq truncate-lines nil)))
+</p>
+<p>
+(global-set-key "\C-cb" 'org-iswitchb)
+</p>
+<p>
+(global-set-key [f7] 'org-export-as-html-and-open)
+</p><hr /> <p>Post by: <a href="http://www.cnblogs.com/jalenwang/"><strong>Jalen Wang</strong></a> (<strong>转载请注明出处</strong>)</p>
+</div>
+</body>
+</html>
