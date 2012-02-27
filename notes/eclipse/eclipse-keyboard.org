@@ -27,6 +27,7 @@
 This may conflict with the input method, if so, change the input method's
 setting.
 
+** Ctrl + Shift + T Open Type
 
 * Move /Copy the lines
 Select
