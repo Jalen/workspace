@@ -9262,5 +9262,5 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 }
 
 
-
+// Jalen: end and call this annoy function
 })( window );

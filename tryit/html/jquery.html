@@ -1,25 +1,25 @@
 <html>
 <head>
 <script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="./model/student.js"/>
+<script type="text/javascript" src="./model/student.js"></script>
+</head>
+
+<body>
+
+<button id='btn1'>Click me</button>
+
 <script type="text/javascript">
 $(document).ready(function(){
   $("#btn1").click(function(){
     $(this).hide();
+
+    var student = Jalen.School.Student('Jalen', 31);
+    document.write($(student).length);
+    
+    var array1= [ 1,2,3];
+    document.write($(array1).length);
   });
-
-
-debugger;
-
-var student = Jalen.School.Student('Jalen', 31);
-
-document.write($(student).length);
 });
-
-</script>
-</head>
-
-<body>
-<button id='btn1'>Click me</button>
+</script> 
 </body>
 </html>
