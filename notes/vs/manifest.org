@@ -1,3 +1,9 @@
+#+style: <style type="text/css">
+#+style:<!--/*--><![cdata[/*><!--*/
+#+style: div.figure { float:left; }
+#+style: /*]]>*/-->
+#+style: </style>
+
 
 * What is Assembly Manifest
 Every assembly, whether static or dynamic, contains a collection of data that
@@ -17,6 +23,7 @@ Read http://msdn.microsoft.com/en-us/library/1w45z383.aspx for more information.
 In VS2010, you can embed an additional manifest file using the project's setting
 dialog.
 
+#+ATTR_HTML: width="800" style="border:1px solid #AEBDCC;"
 [[./static/vc-manifest-setting.png]]
 
 Read http://blogs.msdn.com/b/zakramer/archive/2006/05/22/603558.aspx to know
@@ -85,5 +92,6 @@ Win32Manifest varaiable.
 #+end_src
 
 So to specify the manifest file, I change the project file as this:
-[[./static/c#-manifest-setting.png]]
 
+#+ATTR_HTML: width="800" style="border:1px solid #AEBDCC;"
+[[./static/csharp-manifest-setting.png]]

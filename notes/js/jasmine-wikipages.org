@@ -1,0 +1,51 @@
+
+Some usefule jasmine terms and its wiki pages
+
+* [[https://github.com/pivotal/jasmine/wiki/Suites-and-specs][Suites and specs]]
+** Specs
+Each spec is, naturally, a JavaScript function. You tell Jasmine about a spec
+with a call to it() with a description string and the function. The string is a
+description of a behavior that you want your production code to exhibit; it
+should be meaningful to you when reading a report.
+
+#+begin_src js
+it('should increment a variable', function () {
+  var foo = 0;
+  foo++;
+});
+#+end_src
+** Suites
+
+Specs are grouped in Suites. Suites are defined using the global describe()
+function:
+
+#+begin_src js
+describe('Calculator', function () {
+  it('can add a number', function () {
+  ...
+  });
+
+  it('can multiply some numbers', function () {
+  ...
+  });
+});
+#+end_src
+
+** Disabling Tests & Suites
+Specs may be disabled by calling xit() instead of it(). Suites may be disabled
+by calling xdescribe() instead of describe().
+
+* [[https://github.com/pivotal/jasmine/wiki/Matchers][Matchers]]
+
+Jasmine has several built-in matchers. Here are a few:
+
+* [[https://github.com/pivotal/jasmine/wiki/Spies][Spies]]
+
+Jasmine integrates 'spies' that permit many spying, mocking, and faking
+behaviors. A 'spy' replaces the function it is spying on.
+
+
+* [[https://github.com/pivotal/jasmine/wiki/Before-and-After][Before and After]]
+
+A suite can have a beforeEach() declaration. It takes a function that is run
+before each spec.
