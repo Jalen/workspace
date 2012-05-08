@@ -19,6 +19,7 @@
   ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(cua-mode t nil (cua-base))
+ '(js2-basic-offset 2)
  '(menu-bar-mode t)
  '(show-paren-mode t))
 (custom-set-faces
