@@ -1,0 +1,49 @@
+
+The site for the MongoDB is [[http://www.mongodb.org/]].
+
+Tutorial
+
+
+* JavaScript Shell
+* Documents
+MongoDB is a document database. This means that we store data as documents,
+
+which are similar to JavaScript objects. Here below are a few sample JS objects:
+
+  var a = {age: 25}; 
+
+  var n = {name: 'Ed', languages: ['c', 'ruby', 'js']}; 
+
+  var student = {name: 'Jim', scores: [75, 99, 87.2]}; 
+
+* Saving
+Here's how you save a document to MongoDB:
+
+  db.scores.save({a: 99}); 
+
+
+This says, "save the document '{a: 99}' to the 'scores' collection."
+
+Go ahead and try it. Then, to see if the document was saved, try
+
+  db.scores.find(); 
+
+* Saving and Querying
+Try adding some documents to the scores collection:
+
+  for(i=0; i<10; i++) { db.scores.save({a: i, exam: 5}) }; 
+
+
+Try that, then enter
+
+  db.scores.find(); 
+
+to see if the save succeeded. Since the shell only displays 10 results at time,
+
+you'll need to enter the 'it' command to iterate over the rest.
+
+
+
+
+
+Read http://www.mongodb.org/display/DOCS/Slides+and+Video for more information.

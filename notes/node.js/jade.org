@@ -1,0 +1,5 @@
+Jade - template engine
+Jade is a high performance template engine heavily influenced by Haml and
+implemented with JavaScript for node.
+
+
