@@ -21,7 +21,10 @@
  '(cua-mode t nil (cua-base))
  '(js2-basic-offset 2)
  '(menu-bar-mode t)
- '(show-paren-mode t))
+ '(show-paren-mode t)
+ '(ispell-dictionary "english")
+ '(ispell-program-name "d:\\aspell\\bin\\aspell.exe")
+)
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.

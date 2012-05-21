@@ -1,0 +1,10 @@
+
+
+
+Install the exe and dictionary from http://aspell.net/win32/
+
+Add configuration...
+
+(custom-set-variables
+    '(ispell-dictionary "british")
+    '(ispell-program-name "H:\\bin\\aspell\\bin\\aspell.exe"))
