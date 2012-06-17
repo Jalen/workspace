@@ -1,0 +1,5 @@
+
+* How to do selection
+1. Set mark
+2. Exchange mark and position
+

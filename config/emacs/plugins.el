@@ -71,3 +71,8 @@
 ;;(load "/usr/share/doc/git-core/contrib/emacs/git.el")
 ;;(load "/usr/share/doc/git-core/contrib/emacs/git-blame.el")
 ;;(add-to-list 'vc-handled-backends 'GIT)
+
+(autoload 'markdown-mode "markdown-mode.el"
+   "Major mode for editing Markdown files" t)
+(setq auto-mode-alist
+   (cons '("\\.text" . markdown-mode) auto-mode-alist))
