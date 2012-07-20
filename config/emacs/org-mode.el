@@ -43,12 +43,12 @@
 ;;Below setting are only vaid in the windows systerm
 (when (equal system-type 'windows-nt)
   (progn
-   (setq org-agenda-files (list (concat DB "\\Home\\GTD\\todo.org")))
+   (setq org-agenda-files (list (concat (getenv "dropbox") "\\Home\\GTD\\todo.org")))
 
    ;;http://www.gnu.org/software/emacs/manual/html_node/emacs/Writing-Calendar-Files.html
-   (setq cal-html-directory (concat DB "\\Home\\public_html"))
+   (setq cal-html-directory (concat (getenv "dropbox") "\\Home\\public_html"))
 
-   (setq diary-file (concat DB  "\\Home\\diary"))
+   (setq diary-file (concat (getenv "dropbox")  "\\Home\\diary"))
 
    ;;http://members.optusnet.com.au/~charles57/GTD/mydotemacs.txt
    (define-key global-map [f8] 'remember)
