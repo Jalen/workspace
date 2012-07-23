@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+   <project name="Property Test" default="test" basedir=".">
+        <property name="project.name" value="PropertyTest"/>
+        <property name="project.version" value="1.0.0"/>
+        <target name="test">
+            <echo message="Building ${project.name}-${project.version}"/>
+        </target>
+    </project>
+   

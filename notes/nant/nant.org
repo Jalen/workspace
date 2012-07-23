@@ -1,0 +1,64 @@
+
+[[http://nant.sourceforge.net/release/latest/help/fundamentals/index.html][Reference]]
+
+NAnt's build files are written in XML. Each build file contains one project and
+a number of targets.  Each target contains a number of tasks.
+
+
+* Fundamentals
+** Running NAnt
+*** Examples
+
+NAnt
+Runs NAnt using the file ending in *.build.xml file in the current directory, on
+the default target.
+
+
+NAnt -buildfile:..\ProjectName.build
+Runs NAnt using the ProjectName.build file in the parent directory, on the
+default target.
+
+
+NAnt clean
+Runs NAnt using the default build file in the current directory, on a target
+called clean.
+
+
+NAnt -D:debug=false clean dist
+Runs NAnt using the default build file in the current directory, first on the
+clean target and then on the dist target while setting the debug property to
+false.  This could, for example, make a release distribution from scratch.
+
+** Build Files
+NAnt's build files are written in XML. Each build file contains one project and
+a number of targets.  Each target contains a number of tasks.
+
+** Targets
+*** Dependencies
+*** Wild Targets
+*** Conditional Execution
+if
+unless
+** Tasks
+A task is a piece of code that can be executed.
+
+** Properties
+A project can have a set of properties.  These might be set in the buildfile by
+the <property> task, or might be set outside NAnt.  A property has a name and a
+value. Properties may be used in the value of task attributes. This is done by
+placing the property name between "${" and "}" in the attribute
+value. Properties may also be used in expressions.
+
+#+BEGIN_EXAMPLE
+<?xml version="1.0"?>
+    <project name="Property Test" default="test" basedir=".">
+        <property name="project.name" value="PropertyTest"/>
+        <property name="project.version" value="1.0.0"/>
+        <target name="test">
+            <echo message="Building ${project.name}-${project.version}"/>
+        </target>
+    </project>
+#+END_EXAMPLE
+
+* Task Reference
+http://nant.sourceforge.net/release/latest/help/tasks/index.html

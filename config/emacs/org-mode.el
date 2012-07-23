@@ -62,12 +62,12 @@
 
 		   ("H" "Office and Home Lists"
 			((agenda)
-			 (tags-todo "OFFICE")
 			 (tags-todo "HOME")
-			 (tags-todo "COMPUTER")
-			 (tags-todo "READING")
-			 (tags-todo "BLOG")
 			 (tags-todo "PROJECT")
+			 (tags-todo "BLOG")
+			 (tags-todo "COMPUTER")
+			 (tags-todo "OFFICE")
+			 (tags-todo "READING")
 			 (tags-todo "FINANCIAL")))
 
 		   ("F" "Office Lists"
