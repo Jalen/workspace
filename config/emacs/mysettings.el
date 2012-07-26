@@ -24,8 +24,8 @@
 
 (if (equal window-system 'w32)
     (progn
-	 (setq abbrev-file-name (concat DB "/home/.abbrev_defs"))
-	 (setq bookmark-file (concat DB "/home/.emacs.bmk"))
+	 (setq abbrev-file-name (concat (getenv "dropbox") "/home/.abbrev_defs"))
+	 (setq bookmark-file (concat (getenv "dropbox") "/home/.emacs.bmk"))
 	)
   (progn
    (setq abbrev-file-name "~/workspace/home/.abbrev_defs")
