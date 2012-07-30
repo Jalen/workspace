@@ -1,0 +1,72 @@
+Writing the file using ASCII Encoding within Power Shell
+
+Today, when I develope a power shell script to automatically add the source URL
+comment to all the existing JS files. I need write the comment in the ASCII
+encoding. With the help from the [[http://stackoverflow.com/questions/5596982/using-powershell-to-write-a-file-in-utf-8-without-the-bom][stackoverflow]], I resloved this issue. Check the
+solution:
+
+#+begin_src c++ 
+ 
+
+filter IsFile()
+{
+      if ($_.Extension -eq ".js")
+      {
+         $_
+      }
+}
+
+filter IsNeedSourceURLComment()
+{    
+    $needComment = 1
+    Foreach($line in Get-Content $_.FullName)
+    {
+        if ($line.IndexOf("sourceURL") -ne -1)
+        {
+            $needComment = 0
+        }
+    }
+    
+    if ($needComment -eq 1 )
+    {
+        $_    
+    }
+}
+
+filter CheckOut()
+{
+    p4 edit $_.FullName > nil
+    $_
+}
+
+function AddSourceURLComment()
+{
+    process
+    {
+        Write-Host $_.FullName -ForegroundColor "green"
+
+        $fileName = $_.FullName
+        $localName = $fileName.Substring($fileName.indexOf("siteversion") - 1)
+        $localName = $localName.Replace('\', '/')
+        
+        $encoding = New-Object System.Text.ASCIIEncoding
+        
+        $lines = [System.IO.File]::ReadAllText($_.FullName, $encoding)
+        
+        $comment = "//@ sourceURL=" + $localName
+        if ($comment.Length -gt 81)
+        {
+            $comment = "//@ sourceURL=" + $localName.Substring($comment.Length - 80)
+            
+            Write-Host $comment -ForegroundColor "red"
+        }
+        
+        $comment = "`n" + $comment + "`n`n" + $lines
+        
+        [System.IO.File]::WriteAllText($_.FullName, $comment, $encoding)
+    }
+}
+
+Dir -Path <Path to the souce code> -Filter *.js -Recurse | IsFile | IsNeedSourceURLComment | CheckOut | AddSourceURLComment
+
+#+end_src

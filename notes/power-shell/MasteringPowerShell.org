@@ -1,0 +1,59 @@
+
+* The PowerShell Console
+** Piping:Outputting Information Page by Page
+#+begin_src lisp 
+Get-Process | more
+#+end_src
+
+#+begin_src lisp 
+dir | Sort-Object -property Length, Name
+#+end_src
+** Redirecting: Storing Information in Files
+#+begin_src lisp 
+Help > help.txt
+
+.\help.txt
+#+end_src
+*** store the result of any command to a variable
+#+begin_src lisp 
+$result = Ping 10.10.10.10
+$result
+#+end_src
+
+Variables are universal data storage and variable names always start with a
+"$". 
+
+* Interactive PowerShell
+** PowerShell as a Calculator
+#+begin_src lisp 
+4GB / 720MB
+1mb
+
+#+end_src
+** Executing External Commands
+*** Security Restrictions at Program Start
+#+begin_src lisp 
+& "C:\programs\Windows NT\accessories\wordpad.exe"
+
+.\wordpad.exe
+
+#+end_src
+*** Trustworthy Subdirectories
+
+The Windows environment variable Path determines whether a folder is trustworthy or not. All
+folders listed in this environment variable are treated as "trustworthy" by PowerShell. You could put
+all your important programs in one of the folders listed in the environment
+variable Path. 
+
+#+begin_src lisp 
+$env:Path
+
+$env:path += ";C:\programs\Windows NT\accessories"
+
+#+end_src
+** Cmdlets: "Genuine" PowerShell Commands
+
+** Aliases: Giving Commands Other Names
+
+** Functions: "Expanded" Aliases
+** Invoking Files and Scripts
