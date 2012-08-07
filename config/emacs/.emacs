@@ -71,12 +71,13 @@
 	 ;; If there is more than one, they won't work right.
 	 '(default ((t (:stipple nil :background "#102e4e" :foreground "#eeeeee" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "outline" :family "Courier New")))))
 
+	;; See http://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html#Backquote
 	(setq org-remember-templates 
-		  (quote (
-				  (116 "* TODO %^{Brief Description} %^g\n%?\nAdded: %U" "C:\\Users\\wangjiay\\Documents\\My DBank\\home\\GTD\\todo.org" "Tasks") 
-				  (110 "* %? %T" "C:\\Users\\wangjiay\\Documents\\My DBank\\home\\GTD\\notes.org" "Notes") 
-				  (108 "* %? %T" "C:\\Users\\wangjiay\\Documents\\My DBank\\home\\GTD\\learning.org" "Notes") 
-				  (101 "* %? %T" "C:\\Users\\wangjiay\\Documents\\My DBank\\home\\GTD\\english.org", "Notes"))))
+		  `(
+				  (116 "* TODO %^{Brief Description} %^g\n%?\nAdded: %U" ,(concat DB "\\home\\GTD\\todo.org") "Tasks") 
+				  (110 "* %? %T" ,(concat DB "\\home\\GTD\\notes.org") "Notes") 
+				  (108 "* %? %T" ,(concat DB "\\home\\GTD\\learning.org") "Notes") 
+				  (101 "* %? %T" ,(concat DB "\\home\\GTD\\english.org"), "Notes")))
 	)
 )
 
