@@ -1,0 +1,2 @@
+https://devcenter.heroku.com/articles/increasing-application-performance-with-http-cache-headers/
+

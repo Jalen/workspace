@@ -1,0 +1,75 @@
+http://en.wikipedia.org/wiki/Web_cache
+
+* What?
+A web cache is a mechanism for the temporary storage (caching) of web documents,
+such as HTML pages and images, to reduce bandwidth usage, server load, and
+perceived lag. A web cache stores copies of documents passing through it;
+subsequent requests may be satisfied from the cache if certain conditions are
+met.
+
+
+* Cache control
+HTTP defines three basic mechanisms for controlling caches: freshness, validation, and invalidation.
+
+** Freshness 
+allows a response to be used without re-checking it on the origin server, and
+can be controlled by both the server and the client. For example, the Expires
+response header gives a date when the document becomes stale, and the
+Cache-Control: max-age directive tells the cache how many seconds the response
+is fresh for.
+
+** Validation 
+can be used to check whether a cached response is still good after it becomes
+stale. For example, if the response has a Last-Modified header, a cache can make
+a conditional request using the If-Modified-Since header to see if it has
+changed. The ETag (entity tag) mechanism also allows for both strong and weak
+validation.
+
+** Invalidation 
+is usually a side effect of another request that passes through the cache. For
+example, if a URL associated with a cached response subsequently gets a POST,
+PUT or DELETE request, the cached response will be invalidated.
+
+
+
+* http://ws-rest.org/2010/files/03-Link%20Header-based%20Invalidation%20of%20Caches.pdf
+** Expiration-based caching
+< 200 OK
+< Content-Type: text/html
+< Cache-Control: public, s-maxage=600
+< ....
+Pros:
++ Simple
++ No contact with server until expiration
+Cons:
+- Inefficient
+- Difficult to manage
+
+
+** Validation-based caching
+< 200 OK
+< ETag: "686897696a7c876b7e"
+> GET /example
+> If-None-Match: "686897696a7c876b7e"
+< 304 Not Modified
+Pros:
++ Reduces bandwidth
++ Ensures freshness
+Cons:
+- Server handling every request
+- Generating 304 still costs processing and I/O
+
+** Expiration+Validation caching
+< 200 OK
+< ETag: "686897696a7c876b7e"
+< Cache-Control: public, s-maxage=600
+Pros:
++ Expiration reduces contact with server
++ Validation reduces bandwidth
+Cons:
+- "Worst case" inefficiency
+- Still managing caching rules
+
+* Status code
+http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+

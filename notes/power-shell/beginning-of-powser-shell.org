@@ -1,0 +1,32 @@
+Beginning of the PowerShell Script
+
+* What?
+
+Windows PowerShell is Microsoft's task automation framework, consisting of a
+command-line shell and associated scripting language built on top of, and
+integrated with the .NET Framework. PowerShell provides full access to COM and
+WMI, enabling administrators to perform administrative tasks on both local and
+remote Windows systems.
+
+Check [[http://en.wikipedia.org/wiki/Windows_PowerShell][wiki]] for more information.
+
+* Learn it
+
+To learn it, I download a PowerShell cheat sheet, it is very clear to tell out
+what this language is designed as.
+
+* Use Windows PowerShell ISE
+
+The Windows PowerShell ISE is shipped with PowerShell, you can find it in the
+start menu list. When it is running, it is looks like this:
+
+[[./ise.png]]
+
+And with it, you can run and debug your script. When the bp is hit, you can
+inspect your variable by moving mouse on the variable or type the variable in
+command panel.
+
+It is very useful to use 'Get-Member' CmdLet to inspect the type and avaible
+members of the variable.
+
+

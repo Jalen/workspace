@@ -1,0 +1,34 @@
+http://howtonode.org/getting-started-with-express
+
+* Installation
+
+curl http://expressjs.com/install.sh | sh
+
+or 
+
+npm install express
+
+* Hello world
+
+var express = require('express'),
+    app = express.createServer();
+
+app.use(express.logger());
+
+// Setup the route for the root...
+app.get('/', function(req, res){
+    res.send('Hello World');
+});
+
+app.listen();
+console.log('Express server started on port %s', app.address().port);
+
+* Test
+ curl http://localhost:3000
+
+
+* More information
+http://shapeshed.com/creating-a-basic-site-with-node-and-express/
+
+http://expressjs.com/api.html#express
+
