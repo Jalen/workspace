@@ -1,0 +1,5 @@
+{
+"name" : "my-project", 
+"version" : "1.0.0",
+"dependencies" : { "express" : "3.0.0rc2" }
+}
