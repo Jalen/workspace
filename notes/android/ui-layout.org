@@ -1,0 +1,206 @@
+
+* [[http://developer.android.com/guide/components/fragments.html][Fragments]]
+A Fragment represents a behavior or a portion of user interface in an
+Activity. You can combine multiple fragments in a single activity to build a
+multi-pane UI and reuse a fragment in multiple activities. You can think of a
+fragment as a modular section of an activity, which has its own lifecycle,
+receives its own input events, and which you can add or remove while the
+activity is running (sort of like a "sub activity" that you can reuse in
+different activities).
+
+** DialogFragment
+
+** Adding a user interface
+
+To provide a layout for a fragment, you must implement the onCreateView()
+callback method, which the Android system calls when it's time for the fragment
+to draw its layout. Your implementation of this method must return a View that
+is the root of your fragment's layout.
+
+
+To return a layout from onCreateView(), you can inflate it from a layout
+resource defined in XML. To help you do so, onCreateView() provides a
+LayoutInflater object.
+
+** Adding a fragment to an activity
+*** Declare the fragment inside the activity's layout file.
+#+begin_src c++ 
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <fragment android:name="com.example.news.ArticleListFragment"
+            android:id="@+id/list"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    <fragment android:name="com.example.news.ArticleReaderFragment"
+            android:id="@+id/viewer"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+</LinearLayout>
+#+end_src
+*** Or, programmatically add the fragment to an existing ViewGroup.
+#+begin_src c++ 
+FragmentManager fragmentManager = getFragmentManager()
+FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+
+ExampleFragment fragment = new ExampleFragment();
+fragmentTransaction.add(R.id.fragment_container, fragment);
+fragmentTransaction.commit();
+#+end_src
+
+** Managing Fragments
+
+findFragmentById
+popBackStack
+addOnBackStackChangedListener
+
+** Communicating with the Activity
+
+** Example
+
+However, not all screen configurations are wide enough to show both the list of
+plays and the summary, side by side. So, the layout above is used only for the
+landscape screen configuration, by saving it at
+res/layout-land/fragment_layout.xml.
+
+Thus, when the screen is in portrait orientation, the system applies the
+following layout, which is saved at res/layout/fragment_layout.xml:
+
+
+#+begin_src c++ 
+ /**
+     * Helper function to show the details of a selected item, either by
+     * displaying a fragment in-place in the current UI, or starting a
+     * whole new activity in which it is displayed.
+     */
+    void showDetails(int index) {
+        mCurCheckPosition = index;
+
+        if (mDualPane) {
+            // We can display everything in-place with fragments, so update
+            // the list to highlight the selected item and show the data.
+            getListView().setItemChecked(index, true);
+
+            // Check what fragment is currently shown, replace if needed.
+            DetailsFragment details = (DetailsFragment)
+                    getFragmentManager().findFragmentById(R.id.details);
+            if (details == null || details.getShownIndex() != index) {
+                // Make new fragment to show this selection.
+                details = DetailsFragment.newInstance(index);
+
+                // Execute a transaction, replacing any existing fragment
+                // with this one inside the frame.
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.details, details);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.commit();
+            }
+
+        } else {
+            // Otherwise we need to launch a new activity to display
+            // the dialog fragment with selected text.
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), DetailsActivity.class);
+            intent.putExtra("index", index);
+            startActivity(intent);
+        }
+    }
+#+end_src
+* [[http://developer.android.com/guide/practices/screens_support.html][Supporting Multiple Screens]]
+** Terms and concepts
+Screen size
+Screen density
+Orientation (landscape portrait)
+Resolution
+
+** Range of screens supported										 :ATTACH:
+   :PROPERTIES:
+   :Attachments: screens-ranges.png
+   :ID:       g0vittl0duf0
+   :END:
+
+To optimize your application's UI for the different screen sizes and densities,
+you can provide alternative resources for any of the generalized sizes and
+densities. Typically, you should provide alternative layouts for some of the
+different screen sizes and alternative bitmap images for different screen
+densities. At runtime, the system uses the appropriate resources for your
+application, based on the generalized size or density of the current device
+screen.
+
+** How to Support Multiple Screens
+
+*** Explicitly declare in the manifest which screen sizes your application supports
+*** Provide different layouts for different screen sizes
+By default, Android resizes your application layout to fit the current device
+screen. In most cases, this works fine. In other cases, your UI might not look
+as good and might need adjustments for different screen sizes. For example, on a
+larger screen, you might want to adjust the position and size of some elements
+to take advantage of the additional screen space, or on a smaller screen, you
+might need to adjust sizes so that everything can fit on the screen.
+
+The configuration qualifiers you can use to provide size-specific resources are
+small, normal, large, and xlarge. For example, layouts for an extra large screen
+should go in layout-xlarge/.
+
+Beginning with Android 3.2 (API level 13), the above size groups are deprecated
+and you should instead use the sw<N>dp configuration qualifier to define the
+smallest available width required by your layout resources. For example, if your
+multi-pane tablet layout requires at least 600dp of screen width, you should
+place it in layout-sw600dp/. Using the new techniques for declaring layout
+resources is discussed further in the section about Declaring Tablet Layouts for
+Android 3.2.
+
+** Using configuration qualifiers									 :ATTACH:
+   :PROPERTIES:
+   :Attachments: screens-ranges.png
+   :ID:       cvl1myo0duf0
+   :END:
+
+Create a new directory in your project's res/ directory and name it using the format: <resources_name>-<qualifier>
+<resources_name> is the standard resource name (such as drawable or layout).
+<qualifier> is a configuration qualifier from table 1, below, specifying the
+screen configuration for which these resources are to be used (such as hdpi or
+xlarge).
+
+You can use more than one <qualifier> at a time$(G!7(Bsimply separate each qualifier with a dash.
+Save the appropriate configuration-specific resources in this new directory. The
+resource files must be named exactly the same as the default resource files.
+
+
+** Best Practices
+*** Use wrap_content, fill_parent, or the dp unit for layout dimensions
+
+*** Do not use hard-coded pixel values in your application code
+*** Do not use AbsoluteLayout
+You should instead use RelativeLayout, which uses relative positioning to lay
+out its child views. For instance, you can specify that a button widget should
+appear "to the right of" a text widget.
+
+
+*** Use size and density-specific resources
+
+** How to Test Your Application on Multiple Screens
+IMPORTANT
+
+
+* [[http://developer.android.com/guide/practices/tablets-and-handsets.html][Supporting Tablets and Handsets]]
+
+With Android 3.0 (API level 11), Android introduced a new set of framework APIs
+that allow you to more effectively design activities that take advantage of
+large screens: the Fragment APIs. Fragments allow you to separate distinct
+behavioral components of your UI into separate parts, which you can then combine
+to create multi-pane layouts when running on a tablet or place in separate
+activities when running on a handset. Android 3.0 also introduced ActionBar,
+which provides a dedicated UI at the top of the screen to identify the app and
+provide user actions and navigation.
+
+
+
+* DialogFragment
+* PopupWindow
+

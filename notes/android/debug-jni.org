@@ -1,0 +1,18 @@
+
+The best way to debug JNI would be through GDB, but I am failing to set it up
+properly. Currently, I am using the Logcat to identify the problem.
+
+To debug the crash issue, I inspect the log which contains the call stack to
+tell out where the code are when the crash.
+
+#ifdef ANDROID_NDK
+#include <android/log.h>
+#define  LOG_TAG    "libfysc"
+#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+#else
+#define  LOGI(...)
+#define  LOGE(...)
+#endif
+
+

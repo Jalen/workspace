@@ -73,3 +73,25 @@ Cons:
 * Status code
 http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
+* Node.js & gzippo
+
+In Node.js, the cache is implemented with gzippo. 
+
+Check https://github.com/tomgco/gzippo/blob/master/lib/staticGzip.js
+
+#+begin_src c++ 
+			if (typeof gzippoCache[gzipName] === 'undefined') {
+				gzipAndSend(filename, gzipName, stat.mtime);
+			} else {
+				if ((gzippoCache[gzipName].mtime < stat.mtime) ||
+				((gzippoCache[gzipName].ctime + maxAge) < Date.now())) {
+					gzipAndSend(filename, gzipName, stat.mtime);
+				} else {
+					sendGzipped(gzippoCache[gzipName]);
+				}
+			}
+#+end_src
+
+
+* http://ws-rest.org/2010/files/03-Link%20Header-based%20Invalidation%20of%20Caches.pdf
+
