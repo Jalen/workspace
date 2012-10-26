@@ -1,1 +1,0 @@
-/home/jalen/workspace/config/emacs/.emacs
