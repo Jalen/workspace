@@ -1,0 +1,56 @@
+
+* paint Shadow Layer
+
+http://stackoverflow.com/questions/2486936/android-shadow-on-text
+
+#+begin_src c++ 
+paint.setColor(Color.BLACK);
+paint.setTextSize(55);
+paint.setFakeBoldText(false);
+paint.setShadowLayer(1, 0, 0, Color.BLACK); //This only shadows my whole view...
+#+end_src
+* Stroke
+
+http://stackoverflow.com/questions/1723846/how-do-you-draw-text-with-a-border-on-a-mapview-in-android
+
+#+begin_src c++ 
+@Override
+public void draw(Canvas canvas, MapView mapView, boolean shadow) {
+    Paint strokePaint = new Paint();
+    strokePaint.setARGB(255, 0, 0, 0);
+    strokePaint.setTextAlign(Paint.Align.CENTER);
+    strokePaint.setTextSize(16);
+    strokePaint.setTypeface(Typeface.DEFAULT_BOLD);
+    strokePaint.setStyle(Paint.Style.STROKE);
+    strokePaint.setStrokeWidth(2);
+
+    Paint textPaint = new Paint();
+    textPaint.setARGB(255, 255, 255, 255);
+    textPaint.setTextAlign(Paint.Align.CENTER);
+    textPaint.setTextSize(16);
+    textPaint.setTypeface(Typeface.DEFAULT_BOLD);
+
+    canvas.drawText("Some Text", 100, 100, strokePaint);
+    canvas.drawText("Some Text", 100, 100, textPaint);
+
+    super.draw(canvas, mapView, shadow);
+}
+#+end_src
+
+This will draw a border of 2 pixels around the outside of the text then draw the
+text over the top of it, giving you the illusion of an outline.
+
+
+Also, it may be worth setting the Paints up in the constructor then just reusing
+them.
+
+* Draw the text as the textual
+
+http://stackoverflow.com/questions/1339136/draw-text-in-opengl-es-android
+
+* Android 3D with OpenGL ES 
+
+http://www3.ntu.edu.sg/home/ehchua/programming/android/Android_3D.html
+
+
+
