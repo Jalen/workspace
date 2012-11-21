@@ -1,0 +1,12 @@
+
+* Time based hove button
+
+[[http://blogs.microsoft.co.il/blogs/shair/archive/2011/06/23/kinect-create-buttons.aspx][Kinect $(G!9(B Create Buttons - Shai Raiten]]
+
+* Kinecting the Dots: Adding Buttons to your Kinect Application
+
+http://geekswithblogs.net/mbcrump/archive/2011/07/04/kinecting-the-dots-adding-buttons-to-your-kinect-application.aspx
+
+* TODO http://blogs.msdn.com/b/tess/archive/2011/08/16/kinect-sdk-for-windows-hover-button-hover-control.aspx
+
+

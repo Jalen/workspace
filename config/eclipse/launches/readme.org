@@ -1,0 +1,5 @@
+
+* How to restore these launches?
+
+Copy them to {workspace}\.metadata\.plugins\org.eclipse.debug.core\.launches
+
