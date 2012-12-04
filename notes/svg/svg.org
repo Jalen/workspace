@@ -1,0 +1,77 @@
+SVG Learning Notes
+
+Scalable Vector Graphics (SVG) is an XML markup language for describing
+two-dimensional vector graphics. Basically SVG is to graphics what XHTML is to
+text.
+
+* SVG Elements
+
+** Coordinate Systems, Transformations and Units
+http://www.w3.org/TR/SVG/coords.html
+
+For all media, the SVG canvas describes "the space where the SVG content is
+rendered." The canvas is infinite for each dimension of the space, but rendering
+occurs relative to a finite rectangular region of the canvas. This finite
+rectangular region is called the SVG viewport.
+
+*** The initial coordinate system
+
+For the outermost svg element, the SVG user agent determines an initial viewport
+coordinate system and an initial user coordinate system such that the two
+coordinates systems are identical. The origin of both coordinate systems is at
+the origin of the viewport, and one unit in the initial coordinate system equals
+one "pixel" (i.e., a px unit as defined in CSS2 ([CSS2], section 4.3.2) in the
+viewport. In most cases, such as stand-alone SVG documents or SVG document
+fragments embedded (by reference or inline) within XML parent documents where
+the parent's layout is determined by CSS [CSS2] or XSL [XSL], the initial
+viewport coordinate system (and therefore the initial user coordinate system)
+has its origin at the top/left of the viewport, with the positive x-axis
+pointing towards the right, the positive y-axis pointing down, and text rendered
+with an "upright" orientation, which means glyphs are oriented such that Roman
+characters and full-size ideographic characters for Asian scripts have the top
+edge of the corresponding glyphs oriented upwards and the right edge of the
+corresponding glyphs oriented to the right.
+
+
+** clipPath element and clip-=ath property
+
+The clipping path restricts the region to which paint can be
+applied. Conceptually, any parts of the drawing that lie outside of the region
+bounded by the currently active clipping path are not drawn.
+
+A clipping path is defined with a clipPath element. A clipping path is
+used/referenced using the clip-path property.
+
+A clipping path is conceptually equivalent to a custom viewport for the
+referencing element. Thus, it affects the rendering of an element, but not the
+element's inherent geometry. The bounding box of a clipped element (meaning, an
+element which references a clipPath element via a clip-path property, or a child
+of the referencing element) must remain the same as if it were not clipped
+
+Clippath usage in the publisher:
+[[./clippath.jpg]]
+
+** Coordinate system transformations
+
+A new user space (i.e., a new current coordinate system) can be established by
+specifying transformations in the form of a ¡®transform¡¯ attribute on a
+container element or graphics element or a ¡®viewBox¡¯ attribute on an ¡®svg¡¯,
+¡®symbol¡¯, ¡®marker¡¯, ¡®pattern¡¯ and the ¡®view¡¯ element. The ¡®transform¡¯
+and ¡®viewBox¡¯ attributes transform user space coordinates and lengths on
+sibling attributes on the given element (see effect of the ¡®transform¡¯
+attribute on sibling attributes and effect of the ¡®viewBox¡¯ attribute on
+sibling attributes) and all of its descendants. 
+
+
+* Sites
+http://www.w3.org/TR/SVG/
+https://developer.mozilla.org/en-US/docs/SVG
+http://www.svgbasics.com/
+
+* Useful links
+http://www.w3.org/TR/SVG/render.html
+
+* Demos
+http://labs.sawyerhollenshead.com/lab/svg-clippath/
+https://developer.mozilla.org/en-US/docs/SVG#EXAMPLES
+
