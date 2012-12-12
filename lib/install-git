@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#https://www.digitalocean.com/community/articles/how-to-install-git-on-ubuntu-12-04
+
+sudo apt-get install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl libssl-dev build-essential
+
+wget http://git-core.googlecode.com/files/git-1.7.12.rc2.tar.gz
+
+tar -zxf git-1.7.12.rc2.tar.gz
+
+cd git-1.7.12.rc2
+
+make prefix=/usr/local all
+
+sudo make prefix=/usr/local install

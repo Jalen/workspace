@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# unzip dev environment
+cp dev.tar.gz ~
+pushd ~
+mkdir software
+tar xzvf dev.tar.gz
+popd
+
+# install open terminal context menu
+sudo apt-get install nautilus-open-terminal
+killall nautilus
+
+# install JDK 1.6
+sudo add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ hardy multiverse"
+sudo apt-get update
+sudo apt-get install sun-java6-jdk
+
+# restore configuration
+sudo cp configure/.profile ~/.profile
+sudo cp configure/51-android.rules /etc/udev/rules.d/51-android.rules
+sudo chmod a+r /etc/udev/rules.d/51-android.rules
+
+# install components used for the NDK
+sudo apt-get install  ruby rubygems ruby-dev libnokogiri-ruby ant libxml2 libxml2-dev libxslt1-dev
+
+
+

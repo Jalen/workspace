@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# install the software
+sudo apt-get install git-gui git-core git-doc 
+sudo apt-get install emacs
+
+# setup git
+git config --global user.name Jalen
+git config --global user.email jiayuewang228@gmail.com
+git config --global github.user "Jalen"
+git config --global github.token ac8023dfa02b7ed54c0ff267925dbae7
+
+# copy SSH key
+cp -r .ssh ~
+# Test SSH connection
+ssh -T git@github.com
+
+cd ~
+
+git clone git@github.com:Jalen/workspace.git
+
+
+
