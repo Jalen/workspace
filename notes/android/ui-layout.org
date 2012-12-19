@@ -204,3 +204,31 @@ provide user actions and navigation.
 * DialogFragment
 * PopupWindow
 
+* [[http://developer.android.com/training/improving-layouts/index.html][Improve layout performance]]
+
+** Optimizing Layout Hierarchies
+*** Inspect Your Layout
+
+Using Hierarchy Viewer
+**** Enable Hierarchy Viewer on production device
+http://jmlinnik.blogspot.ro/2012/08/enable-hierarchyviewer-on-production.html
+
+
+
+*** Revise Your Layout
+
+The simpler the better
+   	
+** Re-using Layouts with <include/>
+[[http://developer.android.com/training/improving-layouts/reusing-layouts.html]]
+
+** Loading Views On Demand
+
+*** Define a ViewStub
+
+
+A ViewStub is a dumb and lightweight view. It has no dimension, it does not draw
+anything and does not participate in the layout in any way. This means a
+ViewStub is very cheap to inflate and very cheap to keep in a view hierarchy. A
+ViewStub can be best described as a lazy include. The layout referenced by a
+ViewStub is inflated and added to the user interface only when you decide so.
