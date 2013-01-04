@@ -32,3 +32,19 @@ http://shapeshed.com/creating-a-basic-site-with-node-and-express/
 
 http://expressjs.com/api.html#express
 
+* Commands
+
+npm install
+
+.\node_modules\.bin\express.cmd -session <app_name>
+
+cd <app_name>
+
+npm install
+
+node app.js
+
+
+check
+http://www.joezimjs.com/javascript/getting-started-with-node-js-and-express-3/
+for some detail

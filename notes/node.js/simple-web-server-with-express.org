@@ -1,0 +1,37 @@
+
+* 引子
+
+最近，需要发布自己创建一个web server发布几个html页面。之前用过node.js，知道
+express，但是就是没有自己亲自动手配置一个web server。在网上逛了逛，最终搞定，步
+骤如下。
+
+* 安装node
+
+这个网上有很多，搜索一下就可以了，windows，ubuntu，各个平台的都有。
+
+* 安装Express并创建一个sample web server
+
+#+begin_src java
+npm install
+
+.\node_modules\.bin\express.cmd -session test
+
+cd test
+
+npm install
+
+node app.js
+#+end_src
+用相对路径调用express，为了定位到它。
+
+* 发布html
+
+把需要发布的html拷贝到test下面的public目录下即可。
+
+
+这所以work是因为这个config
+#+begin_src java
+  app.use(express.static(path.join(__dirname, 'public')));
+#+end_src
+
+express.static实现在static.js里，它用send.js把静态文件发布到客户端.

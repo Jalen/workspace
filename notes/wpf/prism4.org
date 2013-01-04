@@ -1,0 +1,97 @@
+
+* Material															 :ATTACH:
+  :PROPERTIES:
+  :Attachments: Prism4.pdf
+  :ID:       ct7c7y91vyf0
+  :END:
+
+* Introduction
+
+Using design patterns that embody important architectural design principles, such as separation of
+concerns and loose coupling, Prism helps you to design and build applications using loosely coupled components that
+can evolve independently but that can be easily and seamlessly integrated into the overall application. These types of
+applications are known as composite applications.
+
+It is expected that the application will evolve significantly over its lifetime in
+response to new requirements and business opportunities. In short, these applications are "built to last" and "built for
+change." Applications that do not demand these characteristics may not benefit
+from using Prism.
+
+** The Composite Approach
+
+An effective remedy for these challenges is to partition the application into a number of discrete, loosely coupled,
+semi-independent components that can then be easily integrated together into an application "shell" to form a
+coherent solution. Applications designed and built this way are often known as
+composite applications.
+
+** Prerequisites
+*** XAML
+*** Data binding
+*** Resources
+*** Commands
+*** User controls
+*** Dependency properties
+*** Behaviors
+
+** An Overview of Prism
+*** Reuse
+*** Extensibility
+*** Flexibility
+*** Team Development
+*** Quality
+** Prism Key Concepts
+*** Modules
+*** Module Catalog
+	ModuleManager, ModuleLoader
+*** Shell
+*** Views
+*** View models and presenters
+*** Models
+*** Commands
+*** Bootstrapper
+ The Bootstrapper component is used by the application to initialize the various Prism
+components and services. It is used to initialize the dependency injection container to register any
+application-level components and services with it. It is also used to configure and initialize the module catalog
+and the shell's view and view model or presenter.
+
+** Typical composite application architecture
+[[./prism/typical-architecture.png]]
+
+** MEF
+http://mef.codeplex.com/
+
+replaced by Microsoft.Composition
+
+
+** Unity
+http://unity.codeplex.com/
+
+*** Inject Some Life into Your Applications$(G!7(BGetting to Know the Unity Application Block
+
+http://msdn.microsoft.com/en-us/library/ff650806.aspx
+
+
+**** Design Patterns Can Be Your Friends
+**** Be Concerned About Your Concerns
+Aspect-oriented programming comes into its own because it considers all other
+types of components and code as "crosscutting concerns." These features are
+generic or semi-generic to many applications, and they usually include familiar
+functions, such as validation, authorization, caching, structured exception
+handling, logging, and performance monitoring. Aspect-oriented programming
+techniques aim to help you more efficiently manage these crosscutting concerns.
+
+ Using Unity makes it much easier to manage the dependencies between your
+ application's core code and the objects that implement validation,
+ authorization, caching, structured exception handling, logging, and performance
+ monitoring.
+
+What is the CORE CODE?
+
+**** What Is Unity?
+Basically, Unity is just a container that stores registrations and mappings
+between types and can instantiate the appropriate concrete types on demand. Or,
+to be more precise, it is a lightweight, extensible dependency injection
+container with support for nested containers and facilities for constructor,
+property, and method call injection.
+
+
