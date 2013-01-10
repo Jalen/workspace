@@ -1,0 +1,41 @@
+
+* hierarchy
+
+SeekBar -> AbsSeekBar -> ProgressBar
+
+#+begin_src c++ 
+    private void updateThumbPos(int w, int h) {
+        Drawable d = getCurrentDrawable();
+        Drawable thumb = mThumb;
+        int thumbHeight = thumb == null ? 0 : thumb.getIntrinsicHeight();
+        // The max height does not incorporate padding, whereas the height
+        // parameter does
+        int trackHeight = Math.min(mMaxHeight, h - mPaddingTop - mPaddingBottom);
+        
+        int max = getMax();
+        float scale = max > 0 ? (float) getProgress() / (float) max : 0;
+        
+        if (thumbHeight > trackHeight) {
+            if (thumb != null) {
+                setThumbPos(w, thumb, scale, 0);
+            }
+            int gapForCenteringTrack = (thumbHeight - trackHeight) / 2;
+            if (d != null) {
+                // Canvas will be translated by the padding, so 0,0 is where we start drawing
+                d.setBounds(0, gapForCenteringTrack, 
+                        w - mPaddingRight - mPaddingLeft, h - mPaddingBottom - gapForCenteringTrack
+                        - mPaddingTop);
+            }
+        } else {
+            if (d != null) {
+                // Canvas will be translated by the padding, so 0,0 is where we start drawing
+                d.setBounds(0, 0, w - mPaddingRight - mPaddingLeft, h - mPaddingBottom
+                        - mPaddingTop);
+            }
+            int gap = (trackHeight - thumbHeight) / 2;
+            if (thumb != null) {
+                setThumbPos(w, thumb, scale, gap);
+            }
+        }
+    }
+#+end_src

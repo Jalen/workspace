@@ -1,0 +1,40 @@
+
+* Using Ant to Automate Building Android Applications
+
+* Install ant on the Ubuntu
+
+Download the latest ant binary (1.8.4) from [[http://apache.etoak.com//ant/binaries/apache-ant-1.8.4-bin.tar.gz][the network]].
+Unzip it (I have unzipped it to <home>/software)
+Modify the ~/.profile as this:
+
+#+begin_src c++ 
+export ANT_HOME=$HOME/software/apache-ant-1.8.4
+
+export PATH="$HOME/software/apache-ant-1.8.4:$PATH"
+#+end_src
+
+* Create the build.xml for my existing project
+
+#+begin_src c++ 
+android update project --path .
+#+end_src
+
+When we are here, we can use the ant to make the debug build now.
+
+* Add key store for the release build
+
+Add the key store properties in the local.properties file.
+
+#+begin_src c++ 
+key.store=<PathOfTheKeyStoreFile>
+key.alias=<AliasOfTheKeyStoreFile>
+key.store.password=<Password>
+key.alias.password=<Password>
+#+end_src
+
+Now, we can use "ant release" to make the release build for the QA now.
+(One-step builds are a Good IdeaTM)
+
+* Ref:
+http://www.androidengineer.com/2010/06/using-ant-to-automate-building-android.html
+

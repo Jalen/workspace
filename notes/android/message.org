@@ -1,0 +1,122 @@
+
+* Draw
+
+** Call Stack
+
+Slider$MyShapeDrawable.onDraw(Shape, Canvas, Paint) line: 382	
+Slider$MyShapeDrawable(ShapeDrawable).draw(Canvas) line: 224	
+LayerDrawable.draw(Canvas) line: 345	
+Slider(ProgressBar).onDraw(Canvas) line: 995	
+Slider(AbsSeekBar).onDraw(Canvas) line: 296	
+Slider(View).draw(Canvas) line: 10983	
+PlayControlBar(ViewGroup).drawChild(Canvas, View, long) line: 2887	
+PlayControlBar(ViewGroup).dispatchDraw(Canvas) line: 2489	
+PlayControlBar(View).draw(Canvas) line: 10986	
+Content(ViewGroup).drawChild(Canvas, View, long) line: 2887	
+Content(ViewGroup).dispatchDraw(Canvas) line: 2489	
+Content(View).draw(Canvas) line: 10986	
+FrameLayout(ViewGroup).drawChild(Canvas, View, long) line: 2887	
+FrameLayout(ViewGroup).dispatchDraw(Canvas) line: 2489	
+NoSaveStateFrameLayout(ViewGroup).drawChild(Canvas, View, long) line: 2885	
+NoSaveStateFrameLayout(ViewGroup).dispatchDraw(Canvas) line: 2489	
+NoSaveStateFrameLayout(ViewGroup).drawChild(Canvas, View, long) line: 2885	
+NoSaveStateFrameLayout(ViewGroup).dispatchDraw(Canvas) line: 2489	
+FrameLayout(ViewGroup).drawChild(Canvas, View, long) line: 2885	
+FrameLayout(ViewGroup).dispatchDraw(Canvas) line: 2489	
+FrameLayout(View).draw(Canvas) line: 10986	
+FrameLayout.draw(Canvas) line: 450	
+FrameLayout(ViewGroup).drawChild(Canvas, View, long) line: 2887	
+FrameLayout(ViewGroup).dispatchDraw(Canvas) line: 2489	
+LinearLayout(ViewGroup).drawChild(Canvas, View, long) line: 2885	
+LinearLayout(ViewGroup).dispatchDraw(Canvas) line: 2489	
+PhoneWindow$DecorView(ViewGroup).drawChild(Canvas, View, long) line: 2885	
+PhoneWindow$DecorView(ViewGroup).dispatchDraw(Canvas) line: 2489	
+PhoneWindow$DecorView(View).draw(Canvas) line: 10986	
+PhoneWindow$DecorView(FrameLayout).draw(Canvas) line: 450	
+PhoneWindow$DecorView.draw(Canvas) line: 2126	
+ViewDebug$4.run(Object...) line: 1092	
+ViewDebug$5.run() line: 1136	
+ViewRootImpl(Handler).handleCallback(Message) line: 605	
+ViewRootImpl(Handler).dispatchMessage(Message) line: 92	
+Looper.loop() line: 137	
+ActivityThread.main(String[]) line: 4424	
+Method.invokeNative(Object, Object[], Class, Class[], Class, int, boolean) line: not available [native method]	
+Method.invoke(Object, Object...) line: 511	
+ZygoteInit$MethodAndArgsCaller.run() line: 784	
+ZygoteInit.main(String[]) line: 551	
+NativeStart.main(String[]) line: not available [native method]	
+
+** Call Chain
+
+View.draw -> ViewGroup.dispatchDraw -> ViewGroup.drawChild
+
+*** View.draw
+#+begin_src java
+public void draw(Canvas canvas) {
+        final int privateFlags = mPrivateFlags;
+        final boolean dirtyOpaque = (privateFlags & DIRTY_MASK) == DIRTY_OPAQUE &&
+                (mAttachInfo == null || !mAttachInfo.mIgnoreDirtyState);
+        mPrivateFlags = (privateFlags & ~DIRTY_MASK) | DRAWN;
+
+        /*
+         * Draw traversal performs several drawing steps which must be executed
+         * in the appropriate order:
+         *
+         *      1. Draw the background
+         *      2. If necessary, save the canvas' layers to prepare for fading
+         *      3. Draw view's content
+         *      4. Draw children
+         *      5. If necessary, draw the fading edges and restore layers
+         *      6. Draw decorations (scrollbars for instance)
+         */
+
+        // Step 1, draw the background, if needed
+        int saveCount;
+
+        if (!dirtyOpaque) {
+            final Drawable background = mBackground;
+            if (background != null) {
+                final int scrollX = mScrollX;
+                final int scrollY = mScrollY;
+
+                if (mBackgroundSizeChanged) {
+                    background.setBounds(0, 0,  mRight - mLeft, mBottom - mTop);
+                    mBackgroundSizeChanged = false;
+                }
+
+                if ((scrollX | scrollY) == 0) {
+                    background.draw(canvas);
+                } else {
+                    canvas.translate(scrollX, scrollY);
+                    background.draw(canvas);
+                    canvas.translate(-scrollX, -scrollY);
+                }
+            }
+        }
+
+        // skip step 2 & 5 if possible (common case)
+        final int viewFlags = mViewFlags;
+        boolean horizontalEdges = (viewFlags & FADING_EDGE_HORIZONTAL) != 0;
+        boolean verticalEdges = (viewFlags & FADING_EDGE_VERTICAL) != 0;
+        if (!verticalEdges && !horizontalEdges) {
+            // Step 3, draw the content
+            if (!dirtyOpaque) onDraw(canvas);
+
+            // Step 4, draw the children
+            dispatchDraw(canvas);
+
+            // Step 6, draw decorations (scrollbars)
+            onDrawScrollBars(canvas);
+
+            // we're done...
+            return;
+        }
+		....
+		}
+#+end_src
+
+
+*** ViewGroup.dispatchDraw
+
+http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android/4.1.1_r1/android/view/ViewGroup.java#2735
+
