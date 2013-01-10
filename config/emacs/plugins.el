@@ -39,8 +39,12 @@
 ; Add htmlize
 (require 'htmlize)
 
-;(require 'graphviz-dot-mode)
-;(load-file "P:/Software/Emacs/site-lisp/graphviz-dot-mode.elc")
+;;(require 'graphviz-dot-mode)
+(load-file "~/workspace/config/lisps/graphviz-dot-mode.el")
+
+(autoload 'graphviz-dot-mode "dot" "Edit Dot scripts." t)
+(add-to-list 'auto-mode-alist '("\\.dot$" . graphviz-dot-mode))
+
 
 ;;(add-to-list 'load-path "~/workspace/config/lisps/git-emacs")
 ;;(require 'git-emacs)
@@ -51,7 +55,6 @@
 
 (autoload 'dos-mode "dos" "Edit Dos scripts." t)
 (add-to-list 'auto-mode-alist '("\\.bat$" . dos-mode))
-
 
 ;;run this command 
 ;; emacs --batch --eval '(byte-compile-file "js2-20080616a.el")'
