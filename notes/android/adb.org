@@ -1,0 +1,21 @@
+
+* Start the application
+
+#+begin_src c++ 
+adb shell am start -a android.intent.action.MAIN -n
+com.iftitah.android.contact/com.iftitah.android.contact.Contact
+#+end_src
+
+[[http://www.cnblogs.com/jalenwang/archive/2013/01/16/adb-shell.html][Check here for more]].
+
+* Inspect the private data of the application
+
+#+begin_src c++ 
+run-as com.yourapp
+cd /data/data/com.yourapp
+ls -l
+exit
+#+end_src
+
+[[http://stackoverflow.com/questions/1043322/why-do-i-get-access-denied-to-data-folder-when-using-adb/7712173#7712173][Check here for more]].
+
