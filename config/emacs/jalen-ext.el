@@ -3,12 +3,12 @@
 (defun my-todo()
   "Open todo.org"
   (interactive)
-  ( find-file (concat (getenv "dropbox") "\\Home\\GTD\\todo.org")))
+  ( find-file (concat (getenv "dropbox") "\\documents\\GTD\\todo.org")))
 
 (defun my-emacs()
   "Open emacs.el"
   (interactive)
-  ( find-file (concat (getenv "dropbox")  "\\Home\\emacs.el")))
+  ( find-file (concat (getenv "dropbox")  "\\documents\\emacs.el")))
 
 (defun my-apps()
   "dired apps folder"
@@ -27,11 +27,6 @@
   (interactive)
   ( find-file (concat (getenv "dropbox") "\\AppData\\ToolsMenu\\AHK.ahk")))
 
-(defun go-home()
-  "dired the home folder"
-  (interactive)
-  (dired (concat (getenv "dropbox") "\\home")))
-
 (defun insert-date ()
   "Insert current date yyyy-mm-dd."
   (interactive)
@@ -42,7 +37,7 @@
   )
 
 (defun new-notes(extersion)
-  (find-file (concat (getenv "dropbox") "\\home\\notes\\blog\\" (format-time-string "%Y-%m-%d") extersion))
+  (find-file (concat (getenv "dropbox") "\\documents\\notes\\blog\\" (format-time-string "%Y-%m-%d") extersion))
   )
 
 (defun take-html-notes()

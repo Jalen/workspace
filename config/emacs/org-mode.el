@@ -43,12 +43,12 @@
 ;;Below setting are only vaid in the windows systerm
 (when (equal system-type 'windows-nt)
   (progn
-   (setq org-agenda-files (list (concat (getenv "dropbox") "\\Home\\GTD\\todo.org")))
+   (setq org-agenda-files (list (concat (getenv "dropbox") "\\documents\\GTD\\todo.org")))
 
    ;;http://www.gnu.org/software/emacs/manual/html_node/emacs/Writing-Calendar-Files.html
-   (setq cal-html-directory (concat (getenv "dropbox") "\\Home\\public_html"))
+   (setq cal-html-directory (concat (getenv "dropbox") "\\documents\\public_html"))
 
-   (setq diary-file (concat (getenv "dropbox")  "\\Home\\diary"))
+   (setq diary-file (concat (getenv "dropbox")  "\\documents\\diary"))
 
    ;;http://members.optusnet.com.au/~charles57/GTD/mydotemacs.txt
    (define-key global-map [f8] 'remember)
@@ -60,7 +60,7 @@
 		   ("P" "Projects"   
 			((tags "PROJECT")))
 
-		   ("H" "Office and Home Lists"
+		   ("H" "Office and documents Lists"
 			((agenda)
 			 (tags-todo "HOME")
 			 (tags-todo "PROJECT")
@@ -77,7 +77,7 @@
 			 (tags-todo "READING")))
 
 
-		   ("M" "Home Lists"
+		   ("M" "documents Lists"
 			((agenda)
 			 (tags-todo "HOME")
 			 (tags-todo "COMPUTER")
@@ -119,22 +119,22 @@
 
    (setq org-publish-project-alist
 		 '(("note-org"
-			:base-directory "c:/Users/wangjiay/Documents/My DBank/home/notes"
-			:publishing-directory "c:/Users/wangjiay/Documents/My DBank/home/publish"
+			:base-directory "c:/Users/wangjiay/Documents/My DBank/documents/notes"
+			:publishing-directory "c:/Users/wangjiay/Documents/My DBank/documents/publish"
 			:base-extension "org"
 			:recursive t
 			:publishing-function org-publish-org-to-html
 			:auto-index nil
 			:index-filename "index.org"
 			:index-title "index"
-			:link-home "index.html"
+			:link-documents "index.html"
 			:section-numbers nil
 			:style "<link rel=\"stylesheet\"
                  href=\".static/emacs.css\"
                  type=\"text/css\"/>")
 		   ("note-static"
-			:base-directory "c:/Users/wangjiay/Documents/My DBank/home/notes"
-			:publishing-directory "c:/Users/wangjiay/Documents/My DBank/home/publish"
+			:base-directory "c:/Users/wangjiay/Documents/My DBank/documents/notes"
+			:publishing-directory "c:/Users/wangjiay/Documents/My DBank/documents/publish"
 			:recursive t
 			:base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt\\|el"
 			:publishing-function org-publish-attachment)
