@@ -28,8 +28,8 @@
 	 (setq bookmark-file (concat (getenv "dropbox") "/appdata/emacs/.emacs.bmk"))
 	)
   (progn
-   (setq abbrev-file-name "~/workspace/documents/.abbrev_defs")
-   (setq bookmark-file "~/workspace/documents/.emacs.bmk")
+   (setq abbrev-file-name "~/workspace/app-data/.abbrev_defs")
+   (setq bookmark-file "~/workspace/app-data/.emacs.bmk")
   )
   )
 
