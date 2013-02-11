@@ -38,3 +38,63 @@ Now, we can use "ant release" to make the release build for the QA now.
 * Ref:
 http://www.androidengineer.com/2010/06/using-ant-to-automate-building-android.html
 
+
+* 自动化生产安卓应用程序
+
+在[[http://www.joelonsoftware.com/articles/fog0000000043.html][The Joel Test: 12 Steps to Better Code]]的第二个Step就是“Can you make a build
+in one step?”。从自己负责[[https://play.google.com/store/apps/details?id=com.autodesk.Fysc][Inventor Publisher Mobile Viewer]]以来，一直就想把生成
+APK的过程给自动化，因为通过Eclipse + ADT的做release的APK实在太繁琐，而且需要经常
+做APK给QA测试。一直忙着做feature，今天得空，在网上搜索了一下，还真被我找到了，方
+案如下：
+
+** Step1：下载安装Ant
+这个直接follow ant官方网站的安装说明就可以了。
+
+** Step2：生成build.xml
+在android project的根目录（有manifest的那个文件夹），运行下面这个命令：
+
+#+begin_src c++ 
+android update project --path .
+#+end_src
+
+
+到此，运行
+#+begin_src c++ 
+ant debug
+#+end_src
+已经可以生成debug build。但是native的code还是没有参与build的过程。
+
+** Step3：添加native code的支持
+在根目录下添加custom_rules.xml，并添加如下语句：
+#+begin_src c++ 
+<project>
+<target name="-pre-build">
+    <exec executable="${ndk.dir}/ndk-build" failonerror="true"/>
+</target>
+
+<target name="clean" depends="android_rules.clean">
+    <exec executable="${ndk.dir}/ndk-build" failonerror="true">
+        <arg value="clean"/>
+    </exec>
+</target>
+</project>
+#+end_src
+并且在local.properies指定ndk的位置，类似sdk.dir:
+#+begin_src c++ 
+ndk.dir=/home/wangjiay/software/android-ndk-r8b
+#+end_src
+至此，我们已经可以自动build native code了。但是还是不能生产release build，因为我
+们没有指定key store。
+
+** Step4：指定key store，支持release build
+
+这个其实比较简单了，只要在local.properies中指定key store的一下设置就可以了：
+
+#+begin_src c++ 
+key.store=<PathOfYourKeyStore>
+key.alias=<...>
+key.store.password=<...>
+key.alias.password=<...>
+#+end_src
+
+就说到这里了，详情请移步[[http://www.androidengineer.com/2010/06/using-ant-to-automate-building-android.html][这里]]或者联系我。

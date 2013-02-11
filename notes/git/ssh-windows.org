@@ -1,0 +1,11 @@
+
+* 
+
+* Reference
+
+** http://blog.csdn.net/mr_von/article/details/5192502
+
+** http://kozmic.net/2011/01/26/git-tooling-for-net-developers/
+
+** http://blog.goosoftware.co.uk/2012/02/07/quick-git-server/
+
