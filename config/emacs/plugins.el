@@ -79,3 +79,9 @@
    "Major mode for editing Markdown files" t)
 (setq auto-mode-alist
    (cons '("\\.text" . markdown-mode) auto-mode-alist))
+
+; http://www.cnblogs.com/csophys/archive/2012/11/16/2773812.html
+; 首先下载了插件以后（下载链接） ，安装好,填写博客地址，账号密码信息。
+; 然后打开一个需要发文的org文件，打开cnblogs插件的minor模式(M-x cnblogs-minor-mode)。
+; 然后使用快捷键C-c c p 就发送成功了，相当的方便。删除，更新博文也是同样类似的操作。
+(require 'cnblogs)
