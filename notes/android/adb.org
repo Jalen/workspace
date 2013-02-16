@@ -19,3 +19,13 @@ exit
 
 [[http://stackoverflow.com/questions/1043322/why-do-i-get-access-denied-to-data-folder-when-using-adb/7712173#7712173][Check here for more]].
 
+
+* Backup the APKs
+
+#+begin_src c++ 
+adb pull /data/app ./
+#+end_src
+
+[[http://jonwestfall.com/2009/08/backup-restore-android-apps-using-adb][Check here for more]].
+
+
