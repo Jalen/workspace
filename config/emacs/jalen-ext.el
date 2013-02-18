@@ -50,6 +50,9 @@
   "Take an org note"
   (interactive)
   (new-notes ".org")
+  (insert "#+TITLE: ReadingNotes@02-12-2013
+#+CATEGORIES: ReadingNotes
+")
   )
 
 (defun my-delete-frame ()
