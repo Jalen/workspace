@@ -155,6 +155,16 @@
 
 (setq org-export-html-auto-postamble nil)
 (setq org-export-html-postamble "<hr /> <p>Post by: <a href=\"http://www.cnblogs.com/jalenwang/\"><strong>Jalen Wang</strong></a> (<strong>转载请注明出处</strong>)</p>")
+(setq org-export-html-style "<style type=\"text/css\">
+  pre {
+    background-color: #2f4f4f;line-height: 1.6;
+    FONT: 10.5pt Consola,\"Bitstream Vera Sans\", Courier New, helvetica;
+    color:wheat;
+  }
+  .h3 {
+    margin-left: 10pt;
+  }
+</style>")
 
 (setq org-agenda-include-diary nil)
 (setq org-timeline-show-empty-dates t)
