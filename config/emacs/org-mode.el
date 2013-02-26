@@ -184,6 +184,28 @@
  
 (define-abbrev org-mode-abbrev-table "isrc" "" '1src)
 
+
+(define-skeleton 1quo
+  "Input #+begin_quote #+end_quote in org-mode"
+""
+"#+begin_quote"
+ _ "\n"
+"#+end_quote"
+)
+ 
+(define-abbrev org-mode-abbrev-table "iquo" "" '1quo)
+
+
+(define-skeleton 1html
+  "Input #+begin_html #+end_html in org-mode"
+""
+"#+begin_html \n"
+ _ "\n"
+"#+end_html"
+)
+ 
+(define-abbrev org-mode-abbrev-table "ihtml" "" '1html)
+
 ;; eLisp
 (defun i-babel-quote (beg end str1 str2)
   (goto-char end)
@@ -209,6 +231,32 @@
   (let ((beg St) (end Ed))
     (message "%s %s" beg end)
     (i-babel-quote beg end "#+begin_src " "#+end_src")))
+
+
+(defun iquo (St Ed)
+  "Enclose quote for org-mode"
+  (interactive "r")
+  (let ((beg St) (end Ed))
+    (message "%s %s" beg end)
+    (i-babel-quote beg end "#+BEGIN_QUOTE " "#+END_QUOTE")))
+
+(defun ihtml (St Ed)
+  "Enclose html for org-mode"
+  (interactive "r")
+  (let ((beg St) (end Ed))
+    (message "%s %s" beg end)
+    (i-babel-quote beg end "#+BEGIN_HTML " "#+END_HTML")))
+
+(defun org-init-blog ()
+  (interactive)
+  (goto-char 0)
+  (insert 
+"
+#+TITLE: ReadingNotes@02-12-2013
+#+CATEGORIES: ReadingNotes
+"))
+
+
 
 (add-hook 'org-mode-hook 'turn-on-font-lock)
 (add-hook 'org-mode-hook 
