@@ -61,30 +61,8 @@
 	(if (cdr (frame-list))
    (delete-frame)
 	 (save-buffers-kill-emacs)))
-	
-(defun move-line (&optional n)
-  "Move current line N (1) lines up/down leaving point in place."
-  (interactive "p")
-	(when (null n)
-   (setq n 1))
-	 (let ((col (current-column)))
-	(beginning-of-line)
-   (next-line 1)
-	 (transpose-lines n)
-	(previous-line 1)
-   (forward-char col)))
-	 
-(defun move-line-up (n)
-  "Moves current line N (1) lines up leaving point in place."
-  (interactive "p")
-	(move-line (if (null n) -1 (- n))))
-   
-   (defun move-line-down (n)
-	 "Moves current line N (1) lines down leaving point in place."
-  (interactive "p")
-	(move-line (if (null n) 1 n)))
-   
-   (defadvice kill-ring-save (before slickcopy activate compile)
+	   
+(defadvice kill-ring-save (before slickcopy activate compile)
 	 "When called interactively with no active region, copy
   a single line instead."
   (interactive
