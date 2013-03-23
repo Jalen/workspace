@@ -50,5 +50,5 @@ C-c '	Edit the source code in its native mode in another buffer
 
 ref http://blog.csdn.net/pfanaya/article/details/6676307
 * Plain list
-find its keyboard form [[http://www.gnu.org/software/emacs/manual/html_node/org/Plain-lists.html#Plain-lists][here]].
+  find its keyboard from [[http://www.gnu.org/software/emacs/manual/html_node/org/Plain-lists.html#Plain-lists][here]].
 
