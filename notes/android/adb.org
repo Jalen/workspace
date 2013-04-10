@@ -11,11 +11,14 @@ com.iftitah.android.contact/com.iftitah.android.contact.Contact
 * Inspect the private data of the application
 
 #+begin_src c++ 
+adb shell
 run-as com.yourapp
 cd /data/data/com.yourapp
 ls -l
 exit
 #+end_src
+
+run-as com.autodesk.Fysc
 
 [[http://stackoverflow.com/questions/1043322/why-do-i-get-access-denied-to-data-folder-when-using-adb/7712173#7712173][Check here for more]].
 

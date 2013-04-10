@@ -41,111 +41,107 @@
      (define-key org-agenda-keymap "\C-p" 'previous-line)))
 
 ;;Below setting are only vaid in the windows systerm
-(when (equal system-type 'windows-nt)
-  (progn
-   (setq org-agenda-files (list (concat (getenv "dropbox") "\\documents\\GTD\\todo.org")))
+(if (equal system-type 'windows-nt)
+	£¨progn 
+	  (setq org-agenda-files (list (concat (getenv "dropbox") "\\documents\\GTD\\todo.org")))
 
-   ;;http://www.gnu.org/software/emacs/manual/html_node/emacs/Writing-Calendar-Files.html
-   (setq cal-html-directory (concat (getenv "dropbox") "\\documents\\public_html"))
+	  ;;http://www.gnu.org/software/emacs/manual/html_node/emacs/Writing-Calendar-Files.html
+	  (setq cal-html-directory (concat (getenv "dropbox") "\\documents\\public_html"))
 
-   (setq diary-file (concat (getenv "dropbox")  "\\documents\\diary"))
+	  (setq diary-file (concat (getenv "dropbox")  "\\documents\\diary"))
+	  (progn
+		(setq org-agenda-files (list "~/todo.org"))
+		;; See http://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html#Backquote
+		(setq org-remember-templates 
+			  `(
+				(116 "* TODO %^{Brief Description} %^g\n%?\nAdded: %U" ,"~/todo.org" "Tasks") ))))
 
-   ;;http://members.optusnet.com.au/~charles57/GTD/mydotemacs.txt
-   (define-key global-map [f8] 'remember)
-   (define-key global-map [f9] 'remember-region)
+(progn
+  ;;http://members.optusnet.com.au/~charles57/GTD/mydotemacs.txt
+  (define-key global-map [f8] 'remember)
+  (define-key global-map [f9] 'remember-region)
 
+  (setq org-agenda-custom-commands
+		'(
+		  ("P" "Projects"   
+		   ((tags "PROJECT")))
 
-   (setq org-agenda-custom-commands
-		 '(
-		   ("P" "Projects"   
-			((tags "PROJECT")))
+		  ("H" "Office and documents Lists"
+		   ((agenda)
+			(tags-todo "HOME")
+			(tags-todo "PROJECT")
+			(tags-todo "BLOG")
+			(tags-todo "COMPUTER")
+			(tags-todo "OFFICE")
+			(tags-todo "READING")
+			(tags-todo "FINANCIAL")))
 
-		   ("H" "Office and documents Lists"
-			((agenda)
-			 (tags-todo "HOME")
-			 (tags-todo "PROJECT")
-			 (tags-todo "BLOG")
-			 (tags-todo "COMPUTER")
-			 (tags-todo "OFFICE")
-			 (tags-todo "READING")
-			 (tags-todo "FINANCIAL")))
-
-		   ("F" "Office Lists"
-			((agenda)
-			 (tags-todo "OFFICE")
-			 (tags-todo "COMPUTER")
-			 (tags-todo "READING")))
-
-
-		   ("M" "documents Lists"
-			((agenda)
-			 (tags-todo "HOME")
-			 (tags-todo "COMPUTER")
-			 (tags-todo "READING")))
-
-		   ("D" "Daily Action List"
-			(
-			 (agenda "" ((org-agenda-ndays 1)
-						 (org-agenda-sorting-strategy
-						  (quote ((agenda time-up priority-down tag-up) )))
-						 (org-deadline-warning-days 0)
-						 ))))
-		   )
-		 )
+		  ("F" "Office Lists"
+		   ((agenda)
+			(tags-todo "OFFICE")
+			(tags-todo "COMPUTER")
+			(tags-todo "READING")))
 
 
+		  ("M" "documents Lists"
+		   ((agenda)
+			(tags-todo "HOME")
+			(tags-todo "COMPUTER")
+			(tags-todo "READING")))
+
+		  ("D" "Daily Action List"
+		   (
+			(agenda "" ((org-agenda-ndays 1)
+						(org-agenda-sorting-strategy
+						 (quote ((agenda time-up priority-down tag-up) )))
+						(org-deadline-warning-days 0)
+						))))
+		  )
+		)
+
+  (add-hook 'org-agenda-mode-hook 'hl-line-mode)
+
+  (setq remember-annotation-functions '(org-remember-annotation)
+		remember-handler-functions '(org-remember-handler)
+		org-fast-tag-selection-single-key 'expert
+		org-export-html-coding-system 'utf-8
+		org-publish-use-timestamps-flag nil
+		org-todo-keyword-faces
+		'(("DONE" . (:foreground "green" :weight))
+		  ("DEFERRED" . (:foreground "orange" :weight bold))
+		  ("CANCELLED" . (:foreground "red" :weight bold))))
 
 
-   ;;(diary)
 
+  ;;http://blog.csdn.net/meteor1113/archive/2009/07/30/4395673.aspx
+  ;;http://emacser.com/org-mode.htm
+  (require 'org-publish)
 
-   (add-hook 'org-agenda-mode-hook 'hl-line-mode)
-
-   (setq remember-annotation-functions '(org-remember-annotation)
-		 remember-handler-functions '(org-remember-handler)
-		 org-fast-tag-selection-single-key 'expert
-		 org-export-html-coding-system 'utf-8
-		 org-publish-use-timestamps-flag nil
-		 org-todo-keyword-faces
-		 '(("DONE" . (:foreground "green" :weight))
-		   ("DEFERRED" . (:foreground "orange" :weight bold))
-		   ("CANCELLED" . (:foreground "red" :weight bold))))
-
-
-
-   ;;http://blog.csdn.net/meteor1113/archive/2009/07/30/4395673.aspx
-   ;;http://emacser.com/org-mode.htm
-   (require 'org-publish)
-
-   (setq org-publish-project-alist
-		 '(("note-org"
-			:base-directory "c:/Users/wangjiay/Documents/My DBank/documents/notes"
-			:publishing-directory "c:/Users/wangjiay/Documents/My DBank/documents/publish"
-			:base-extension "org"
-			:recursive t
-			:publishing-function org-publish-org-to-html
-			:auto-index nil
-			:index-filename "index.org"
-			:index-title "index"
-			:link-documents "index.html"
-			:section-numbers nil
-			:style "<link rel=\"stylesheet\"
+  (setq org-publish-project-alist
+		'(("note-org"
+		   :base-directory "c:/Users/wangjiay/Documents/My DBank/documents/notes"
+		   :publishing-directory "c:/Users/wangjiay/Documents/My DBank/documents/publish"
+		   :base-extension "org"
+		   :recursive t
+		   :publishing-function org-publish-org-to-html
+		   :auto-index nil
+		   :index-filename "index.org"
+		   :index-title "index"
+		   :link-documents "index.html"
+		   :section-numbers nil
+		   :style "<link rel=\"stylesheet\"
                  href=\".static/emacs.css\"
                  type=\"text/css\"/>")
-		   ("note-static"
-			:base-directory "c:/Users/wangjiay/Documents/My DBank/documents/notes"
-			:publishing-directory "c:/Users/wangjiay/Documents/My DBank/documents/publish"
-			:recursive t
-			:base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt\\|el"
-			:publishing-function org-publish-attachment)
-		   ("note"		 :components ("note-org" "note-static")
-			:author "jiayuewang228@gmail.com"
-			)))
-
-   ;;global-set-key (kbd "<f8> p") 'org-publish)
-   )
-  ) ;; end of windows-nt 
-
+		  ("note-static"
+		   :base-directory "c:/Users/wangjiay/Documents/My DBank/documents/notes"
+		   :publishing-directory "c:/Users/wangjiay/Documents/My DBank/documents/publish"
+		   :recursive t
+		   :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt\\|el"
+		   :publishing-function org-publish-attachment)
+		  ("note"		 :components ("note-org" "note-static")
+		   :author "jiayuewang228@gmail.com"
+		   )))
+  )
 
 (setq org-agenda-exporter-settings
       '((ps-number-of-columns 1)
