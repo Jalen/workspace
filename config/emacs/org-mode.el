@@ -40,21 +40,23 @@
      (define-key org-agenda-mode-map "\C-p" 'previous-line)
      (define-key org-agenda-keymap "\C-p" 'previous-line)))
 
-;;Below setting are only vaid in the windows systerm
-(if (equal system-type 'windows-nt)
-	£¨progn 
+;;Below setting are only valid in the windows systerm
+(when (equal system-type 'windows-nt)
+	(progn 
 	  (setq org-agenda-files (list (concat (getenv "dropbox") "\\documents\\GTD\\todo.org")))
 
 	  ;;http://www.gnu.org/software/emacs/manual/html_node/emacs/Writing-Calendar-Files.html
 	  (setq cal-html-directory (concat (getenv "dropbox") "\\documents\\public_html"))
 
 	  (setq diary-file (concat (getenv "dropbox")  "\\documents\\diary"))
-	  (progn
-		(setq org-agenda-files (list "~/todo.org"))
-		;; See http://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html#Backquote
-		(setq org-remember-templates 
-			  `(
-				(116 "* TODO %^{Brief Description} %^g\n%?\nAdded: %U" ,"~/todo.org" "Tasks") ))))
+      (setq org-agenda-files (list "~/todo.org"))
+	  ;; See http://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html#Backquote
+	  (setq org-remember-templates 
+			`((116 "* TODO %^{Brief Description} %^g\n%?\nAdded: %U" ,"~/todo.org" "Tasks"))
+	  )
+	  (message "org model is speciall setupped for the windows")
+	  ))
+
 
 (progn
   ;;http://members.optusnet.com.au/~charles57/GTD/mydotemacs.txt
