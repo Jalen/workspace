@@ -1,0 +1,6 @@
+
+* Clean untracked files
+
+git clean -df
+git clean -dn
+
