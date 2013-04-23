@@ -98,8 +98,6 @@
 ; Mark point. 32 is the ascii code for space
 (global-set-key (kbd "M-SPC") 'set-mark-command) ; was just-one-space
 
-(global-set-key (kbd "M-a") 'execute-extended-command) ; was backward-sentence
-
 ;;; WINDOW SPLITING
 (global-set-key (kbd "M-2") 'split-window-vertically) ; was digit-argument
 (global-set-key (kbd "M-1") 'delete-other-windows) ; was digit-argument
