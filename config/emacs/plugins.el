@@ -85,3 +85,7 @@
 ; 然后打开一个需要发文的org文件，打开cnblogs插件的minor模式(M-x cnblogs-minor-mode)。
 ; 然后使用快捷键C-c c p 就发送成功了，相当的方便。删除，更新博文也是同样类似的操作。
 (require 'cnblogs)
+
+(when (equal system-type 'gnu/linux)
+  (require 'android-mode)
+)

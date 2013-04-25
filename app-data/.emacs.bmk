@@ -2,9 +2,14 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("org-remember-last-stored"
+(("ClothingDetailActivity.java"
+ (filename . "~/git/CatchFit/com.catchfit.CatchFit/src/com/catchfit/activities/ClothingDetailActivity.java")
+ (front-context-string . "\n\n		// Show the ")
+ (rear-context-string . "lothing_detail);")
+ (position . 719))
+("org-remember-last-stored"
  (filename . "~/todo.org")
- (front-context-string . "** TODO Remove t")
- (rear-context-string . "-04-20 六 21:55]\n")
- (position . 1962))
+ (front-context-string . "** TODO  android")
+ (rear-context-string . "-04-22 一 22:44]\n")
+ (position . 2019))
 )
