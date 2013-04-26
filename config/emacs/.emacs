@@ -88,7 +88,16 @@
 
 (add-to-list 'load-path "~/workspace/config/lisps/yasnippet")
 (require 'yasnippet)
-(yas/global-mode 1)
+
+(setq yas-snippet-dirs
+      '("~/workspace/snippets"            ;; personal snippets
+        "~/workspace/config/lisps/yasnippet/snippets"    ;; the default collection
+        ))
+
+(yas/global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
+;(yas/initialize)
+;(yas/load-directory "~/workspace/config/lisps/yasnippet/snippets")
+(global-set-key (kbd "C-;") 'yas/expand)
 
 (require 'sams-lib)
 
@@ -99,15 +108,15 @@
   ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(cua-mode t nil (cua-base))
+ '(ispell-dictionary "english" t)
+ '(ispell-program-name "d:\\aspell\\bin\\aspell.exe" t)
  '(js2-basic-offset 2)
  '(menu-bar-mode t)
- '(show-paren-mode t)
- '(ispell-dictionary "english")
- '(ispell-program-name "d:\\aspell\\bin\\aspell.exe")
-)
+ '(show-paren-mode t))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  )
+

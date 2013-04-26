@@ -1,0 +1,49 @@
+
+* yasnippet on the Github
+https://github.com/capitaomorte/yasnippet
+
+* Writing snippets
+** Template syntax
+
+*** Plain Text
+Arbitrary text can be included as the content of a template. They are usually
+interpreted as plain text, except $ and `. You need to use \ to escape them: \$
+and \`. The \ itself may also needed to be escaped as \\ sometimes.
+
+*** Embedded Emacs-lisp code
+Emacs-Lisp code can be embedded inside the template, written inside back-quotes
+(`). The lisp forms are evaluated when the snippet is being expanded. The
+evaluation is done in the same buffer as the snippet being expanded.
+
+Here's an example for c-mode to calculate the header file guard dynamically:
+#+begin_src c++ 
+#ifndef ${1:_`(upcase (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))`_H_}
+#define $1
+
+$0
+
+#endif /* $1 */
+#+end_src
+*** Tab step fields
+
+*** Placeholder fields
+*** Mirrors
+We refer the tab stops with placeholders as a field. A field can have
+mirrors. Its mirrors will get updated when you change the text of a field. 
+
+
+
+#+TITLE:     ya-snippet.org
+#+AUTHOR:    Jalen Wang
+#+EMAIL:     jiayuewang228@gmail.com
+#+DATE:      2013-04-26 五
+#+DESCRIPTION: 
+#+KEYWORDS: 
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:nil toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
