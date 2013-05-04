@@ -52,10 +52,10 @@
 
 (when (equal system-type 'gnu/linux)
   (progn
-	(setq org-agenda-files (list "~/todo.org"))
+	(setq org-agenda-files (list "~/Dropbox/doc/todo.org"))
 	;; See http://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html#Backquote
 	(setq org-remember-templates 
-		  `((116 "* TODO %^{Brief Description} %^g\n%?\nAdded: %U" ,"~/todo.org" "Tasks"))
+		  `((116 "* TODO %^{Brief Description} %^g\n%?\nAdded: %U" ,"~/Dropbox/doc/todo.org" "Tasks"))
 		  )
 	))
 
