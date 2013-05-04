@@ -9,5 +9,9 @@ nautilus => file exploer
 
 ALT + SPACE => Show context menu of the windows
 
+unity 修改快捷键的方法 （Ubuntu 12.10）
+
+http://www.cnblogs.com/qlong8807/archive/2013/01/28/2879967.html
+
 
 
