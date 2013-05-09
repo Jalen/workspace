@@ -43,14 +43,14 @@
 			   ("A" agenda "" ((org-agenda-skip-function (lambda nil (org-agenda-skip-entry-if (quote notregexp) "\\=.*\\[#A\\]"))) (org-agenda-ndays 1) (org-agenda-overriding-header "Today's Priority #A tasks: "))) 
 			   ("u" alltodo "" ((org-agenda-skip-function (lambda nil (org-agenda-skip-entry-if (quote scheduled) (quote deadline) (quote regexp) "<[^>
 ]+>"))) (org-agenda-overriding-header "Unscheduled TODO entries: "))))))
-	 '(org-agenda-files (quote (concat DB "\\documents\\GTD\\todo.org")))
+	 '(org-agenda-files (quote (concat DB "\\doc\\GTD\\todo.org")))
 	 '(org-agenda-ndays 7)
 	 '(org-agenda-show-all-dates t)
 	 '(org-agenda-skip-deadline-if-done t)
 	 '(org-agenda-skip-scheduled-if-done t)
 	 '(org-agenda-start-on-weekday nil)
 	 '(org-deadline-warning-days 14)
-	 '(org-default-notes-file (concat DB "\\documents\\GTD\\notes.org"))
+	 '(org-default-notes-file (concat DB "\\doc\\GTD\\notes.org"))
 	 '(org-fast-tag-selection-single-key (quote expert))
 	 '(org-log-done (quote (done clock-out)))
 	 '(org-refile-targets (quote (("todo.org" :maxlevel . 1) ("someday.org" :level . 2))))
@@ -74,10 +74,10 @@
 	;; See http://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html#Backquote
 	(setq org-remember-templates 
 		  `(
-				  (116 "* TODO %^{Brief Description} %^g\n%?\nAdded: %U" ,(concat DB "\\documents\\GTD\\todo.org") "Tasks") 
-				  (110 "* %? %T" ,(concat DB "\\documents\\GTD\\notes.org") "Notes") 
-				  (108 "* %? %T" ,(concat DB "\\documents\\GTD\\learning.org") "Notes") 
-				  (101 "* %? %T" ,(concat DB "\\documents\\GTD\\english.org"), "Notes")))
+				  (116 "* TODO %^{Brief Description} %^g\n%?\nAdded: %U" ,(concat DB "\\doc\\GTD\\todo.org") "Tasks") 
+				  (110 "* %? %T" ,(concat DB "\\doc\\GTD\\notes.org") "Notes") 
+				  (108 "* %? %T" ,(concat DB "\\doc\\GTD\\learning.org") "Notes") 
+				  (101 "* %? %T" ,(concat DB "\\doc\\GTD\\english.org"), "Notes")))
 	)
 )
 
