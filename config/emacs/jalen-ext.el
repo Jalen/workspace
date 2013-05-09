@@ -37,7 +37,10 @@
   )
 
 (defun new-notes(extersion)
-  (find-file (concat (getenv "dropbox") "\\documents\\notes\\blog\\" (format-time-string "%Y-%m-%d") extersion))
+  (if (equal system-type 'gnu/linux) 
+	  (find-file (concat "~/Dropbox/doc/notes/blog/" (format-time-string "%Y-%m-%d") extersion))
+	(find-file (concat (getenv "dropbox") "\\documents\\notes\\blog\\" (format-time-string "%Y-%m-%d") extersion))
+   )
   )
 
 (defun take-html-notes()
